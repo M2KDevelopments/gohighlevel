@@ -1,0 +1,26 @@
+{
+  "name": "gohighlevel",
+  "version": "1.0.0",
+  "description": "Go Highlevel Node Js ease of use library implementation to their API",
+  "main": "/src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/M2KDevelopments/gohighlevel.git"
+  },
+  "keywords": [
+    "gohighlevel",
+    "highlevel",
+    "node",
+    "express",
+    "api"
+  ],
+  "author": "M2K Developments",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/M2KDevelopments/gohighlevel/issues"
+  },
+  "homepage": "https://github.com/M2KDevelopments/gohighlevel#readme"
+}
