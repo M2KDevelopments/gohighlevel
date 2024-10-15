@@ -1,20 +1,73 @@
-import { OAuthCredientials } from "../interfaces/oauth.credientials";
+import { AuthToken } from "../interfaces/authtoken";
+import { CallbackInfo } from "../interfaces/callback";
+import { Credientials } from "../interfaces/credientials";
+import axios from 'axios';
 
 export class OAuth {
+
+    private credientials: Credientials;
+
+
+    /**
+     * Creates an OAuth instance with the given credientials for GHL.
+     * @param credientials - The credientials for the OAuth flow.
+     */
+    constructor(credientials: Credientials) {
+        this.credientials = credientials;
+    }
 
     /**
      * Returns the OAuth URL for the given credientials.
      * Documentation -  https://highlevel.stoplight.io/docs/integrations/a04191c0fabf9-authorization
-     * @param credientials The credientials for the OAuth request.
+     * You can set up an app in Gohighlevel Marketplace - https://marketplace.gohighlevel.com/
      * @returns The OAuth URL, encoded as a URI component.
      */
-    getOAuthURL(credientials: OAuthCredientials) {
+    getOAuthURL() {
         // https://highlevel.stoplight.io/docs/integrations/a04191c0fabf9-authorization
-        const client_id = credientials.clientId;
-        const redirect_uri = credientials.redirectUri;
-        const scope = credientials.scopes.join(' ');
-        const url = `https://marketplace.${credientials.isWhiteLabel ? `leadconnectorhq` : `gohighlevel`}.com/oauth/chooselocation?client_id=${client_id}&response_type=code&scope=${scope}&redirect_uri=${redirect_uri}`;
+        const client_id = this.credientials.clientId;
+        const redirect_uri = this.credientials.redirectUri;
+        const scope = this.credientials.scopes.join(' ');
+        const url = `https://marketplace.${this.credientials.isWhiteLabel ? `leadconnectorhq` : `gohighlevel`}.com/oauth/chooselocation?client_id=${client_id}&response_type=code&scope=${scope}&redirect_uri=${redirect_uri}`;
         return encodeURIComponent(url);
+    }
+
+
+    async getCallbackAuthTokens(info: CallbackInfo) {
+        if (!info.code && !info.refresh_token) throw new Error("Please enter a refresh token or code");
+
+        const body = info.code ?
+            new URLSearchParams({
+                grant_type: "authorization_code",
+                client_id: this.credientials.clientId,
+                client_secret: this.credientials.clientSecret,
+                code: info.code,
+            }) :
+            new URLSearchParams({
+                grant_type: "refresh_token",
+                client_id: this.credientials.clientId,
+                client_secret: this.credientials.clientSecret,
+                refresh_token: info.refresh_token!
+            })
+
+
+        // Headers
+        const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+
+        // Make API Call to get Auth Tokens
+        const response = await axios.post(`https://api.msgsndr.com/oauth/token`, body, { headers });
+        const { access_token, expires_in, scope, locationId, userType, refresh_token } = response.data;
+
+
+        // Structure Data
+        const data: AuthToken = {
+            access_token: access_token,
+            refresh_token: info.refresh_token ? info.refresh_token : refresh_token,
+            expires_in: parseInt(expires_in),
+            scope: scope,
+            locationId: locationId,
+            userType: userType
+        }
+        return data;
     }
 
 }
