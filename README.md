@@ -2,8 +2,6 @@
 Go Highlevel Node Js ease of use library implementation to their API.
 
 ## Examples
-
-
 ```
 // App Info for GHL
 const client_id = process.env.CLIENT_ID;
@@ -22,7 +20,7 @@ const GHL = new Gohighlevel({
 
 
 
-### Authentication
+### OAuth URL
 ```
 function oauth(req, res) {
     const url = GHL.oauth.getOAuthURL()
@@ -30,12 +28,11 @@ function oauth(req, res) {
 }
 ```
 
-### Auth Callback
+### OAuth Callback
 ```
 function callback(req, res) {
-    const query = req.query;
-    const code = query.code;
-    const refresh_token = query.refresh_token;
+    const code = req.query.code;
+    const refresh_token = req.query.refresh_token;
     const authInfo = GHL.oauth.getCallbackAuthTokens({
         code: code,
         refresh_token: refresh_token

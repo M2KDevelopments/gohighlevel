@@ -25,13 +25,20 @@ export class OAuth {
     getOAuthURL() {
         // https://highlevel.stoplight.io/docs/integrations/a04191c0fabf9-authorization
         const client_id = this.credientials.clientId;
-        const redirect_uri = this.credientials.redirectUri;
-        const scope = this.credientials.scopes.join(' ');
+        const redirect_uri = encodeURIComponent(this.credientials.redirectUri);
+        const scope = encodeURIComponent(this.credientials.scopes.join(' '));
         const url = `https://marketplace.${this.credientials.isWhiteLabel ? `leadconnectorhq` : `gohighlevel`}.com/oauth/chooselocation?client_id=${client_id}&response_type=code&scope=${scope}&redirect_uri=${redirect_uri}`;
-        return encodeURIComponent(url);
+        return url;
     }
 
 
+    /**
+     * Retrieves the authentication tokens based on the provided information.
+     * If neither a refresh token nor a code is provided, an error is thrown.
+     * 
+     * @param info - The CallbackInfo containing the code or refresh token.
+     * @returns The authentication tokens including the access token, refresh token, expires in time, scope, location ID, and user type.
+     */
     async getCallbackAuthTokens(info: CallbackInfo) {
         if (!info.code && !info.refresh_token) throw new Error("Please enter a refresh token or code");
 
