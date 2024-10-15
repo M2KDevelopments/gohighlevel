@@ -3,6 +3,7 @@ Go Highlevel Node Js ease of use library implementation to their API.
 
 ## Examples
 
+
 ```
 // App Info for GHL
 const client_id = process.env.CLIENT_ID;
@@ -11,11 +12,15 @@ const redirect_uri = process.env.REDIRECT_URI;
 
 // Create Instance of Gohighlevel
 const GHL = new Gohighlevel({
-    clientId: client_id,
-    clientSecret: client_secret,
-    redirectUri: redirect_uri
-});
+    clientId: CLIENT_ID,
+    clientSecret: CLIENT_ID_SECRET,
+    redirectUri: redirect_uri,
+    isWhiteLabel: true,
+    scopes: ["calendars.write"]
+})
 ```
+
+
 
 ### Authentication
 ```
