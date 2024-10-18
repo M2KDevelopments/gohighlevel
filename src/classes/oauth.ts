@@ -1,4 +1,4 @@
-import { AuthToken } from "../interfaces/authtoken";
+import { AuthData } from "../interfaces/authdata";
 import { CallbackInfo } from "../interfaces/callback";
 import { Credientials } from "../interfaces/credientials";
 import axios from 'axios';
@@ -66,7 +66,7 @@ export class OAuth {
 
 
         // Structure Data
-        const data: AuthToken = {
+        const data: AuthData = {
             access_token: access_token,
             refresh_token: info.refresh_token ? info.refresh_token : refresh_token,
             expires_in: parseInt(expires_in),
