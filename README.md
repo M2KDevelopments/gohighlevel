@@ -30,13 +30,24 @@ function oauth(req, res) {
 
 ### OAuth Callback
 ```
-function callback(req, res) {
-    const code = req.query.code;
-    const refresh_token = req.query.refresh_token;
-    const authInfo = GHL.oauth.getCallbackAuthTokens({
+async function callback(req, res) {
+    
+    // Get Auth Info
+    let code = req.query.code;
+    let refresh_token = req.query.refresh_token;
+    let authInfo = GHL.oauth.getCallbackAuthTokens({
         code: code,
         refresh_token: refresh_token
     });
+
+    // Set Auth Info
+    GHL.setAuth(authInfo);
+
+
+    // Use GHL API
+    let contacts = await GHL.getContacts();
+
+    return res.status(200).json(contacts);
 }
 ```
 
