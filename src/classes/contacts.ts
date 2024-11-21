@@ -10,8 +10,15 @@ interface CreateContactInfo {
     source?: string
 }
 
+
 export class Contacts {
     private authData?: AuthData;
+
+
+    /**
+     * Endpoints For Contacts
+     * https://highlevel.stoplight.io/docs/integrations/e957726e8625d-contacts-api
+     */
     constructor(authToken?: AuthData) {
         this.authData = authToken;
     }
@@ -69,3 +76,4 @@ export class Contacts {
 
     }
 }
+
