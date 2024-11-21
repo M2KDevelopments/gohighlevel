@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AuthData } from "../interfaces/authdata";
+import { AuthData } from "../interfaces/auth/authdata";
 import { Contact } from "../interfaces/contact";
 
 interface CreateContactInfo {
@@ -55,7 +55,7 @@ export class Contacts {
             "email": contact.email,
             "phone": contact.phone,
             "source": contact.source,
-        };;
+        };
         const response = await axios.post(`https://services.leadconnectorhq.com/contacts/`, body, { headers });
         const c: Contact = response.data.contact;
         return c;

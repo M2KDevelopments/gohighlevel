@@ -1,7 +1,7 @@
 import { Contacts } from "./classes/contacts";
 import { OAuth } from "./classes/oauth";
-import { AuthData } from "./interfaces/authdata";
-import { Credientials } from "./interfaces/credientials";
+import { AuthData } from "./interfaces/auth/authdata";
+import { Credientials } from "./interfaces/auth/credientials";
 import axios from "axios";
 
 export class Gohighlevel {
@@ -45,7 +45,7 @@ export class Gohighlevel {
             const { access_token, expires_in, scope, locationId, userType } = response.data;
 
             // Todo save this new auth info
-
+            this.authData = { access_token: access_token, locationId: locationId };
             return { access_token, expires_in, scope, locationId, userType } as AuthData;
         } catch (e) {
             return this.authData;
@@ -62,4 +62,8 @@ export class Gohighlevel {
         const stillGood = (this.authData.expires_in && !isNaN(parseInt(this.authData.expires_in.toString())) && parseInt(this.authData.expires_in.toString()) > Date.now())
         return !stillGood;
     }
+
+
+
+
 }
