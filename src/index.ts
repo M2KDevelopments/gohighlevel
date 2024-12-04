@@ -29,6 +29,11 @@ export class Gohighlevel {
         this.authData = { access_token: "", locationId: "" };
     }
 
+    /**
+     * Set the Authorization Data for the GHL Account.
+     * Set the auth after getting it from the GHL.oauth.getOAuthURL()
+     * @param authData 
+     */
     setAuth(authData: AuthData) {
         this.authData = authData;
         this.authData.headers = {
@@ -82,8 +87,5 @@ export class Gohighlevel {
         const stillGood = (this.authData.expires_in && !isNaN(parseInt(this.authData.expires_in.toString())) && parseInt(this.authData.expires_in.toString()) > Date.now())
         return !stillGood;
     }
-
-
-
 
 }
