@@ -1,3 +1,5 @@
+import { Campaign } from "./classes/campaigns";
+import { Company } from "./classes/company";
 import { Contacts } from "./classes/contacts";
 import { OAuth } from "./classes/oauth";
 import { AuthData } from "./interfaces/auth/authdata";
@@ -10,6 +12,8 @@ export class Gohighlevel {
     public credientials: Credientials;
     public oauth: OAuth;
     public contacts: Contacts;
+    public campaigns: Campaign;
+    public company: Company;
     private authData: AuthData;
 
 
@@ -17,6 +21,8 @@ export class Gohighlevel {
         this.credientials = credientials;
         this.oauth = new OAuth(credientials);
         this.contacts = new Contacts();
+        this.campaigns = new Campaign();
+        this.company = new Company();
         this.authData = { access_token: "", locationId: "" };
     }
 
@@ -28,6 +34,8 @@ export class Gohighlevel {
             "Accept": 'application/json'
         }
         this.contacts = new Contacts(authData);
+        this.campaigns = new Campaign(authData);
+        this.company = new Company(authData);
     }
 
     /**

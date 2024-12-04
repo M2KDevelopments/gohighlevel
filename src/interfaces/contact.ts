@@ -30,8 +30,8 @@ interface CustomFieldUpdate {
     field_value: string;
 }
 
-export interface Contact {
-    id: string;
+export interface IContact {
+    id?: string;
     locationId: string;
     firstName: string;
     lastName: string;
