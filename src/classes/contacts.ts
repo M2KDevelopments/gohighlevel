@@ -1,11 +1,18 @@
 import axios from "axios";
-import { AuthData } from "../interfaces/authdata";
+import { AuthData } from "../interfaces/auth/authdata";
 import { Contact } from "../interfaces/contact";
 import { Gohighlevel } from "..";
 
 
+
 export class Contacts {
     private authData?: AuthData;
+
+
+    /**
+     * Endpoints For Contacts
+     * https://highlevel.stoplight.io/docs/integrations/e957726e8625d-contacts-api
+     */
     constructor(authToken?: AuthData) {
         this.authData = authToken;
     }
@@ -95,6 +102,5 @@ export class Contacts {
         const response = await axios.delete(`${Gohighlevel.BASEURL}/contacts/${id}`, { headers });
         return response.data.succeded as boolean;
     }
-
 
 }
