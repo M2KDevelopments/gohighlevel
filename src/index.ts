@@ -15,7 +15,7 @@ export class Gohighlevel {
     public contacts: Contacts;
     public campaigns: Campaign;
     public company: Company;
-    private links: TriggerLink;
+    public links: TriggerLink;
     private authData: AuthData;
 
 
@@ -32,9 +32,9 @@ export class Gohighlevel {
     setAuth(authData: AuthData) {
         this.authData = authData;
         this.authData.headers = {
-            "Version": "2021-04-15",
-            "Authorization": "Bearer " + authData.access_token,
-            "Accept": 'application/json'
+            "Version": authData?.headers?.Version || "2021-04-15",
+            "Authorization": authData?.headers?.Authorization || "Bearer " + authData.access_token,
+            "Accept": authData?.headers?.Accept || 'application/json'
         }
         this.contacts = new Contacts(authData);
         this.campaigns = new Campaign(authData);
