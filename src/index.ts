@@ -6,10 +6,13 @@ import axios from "axios";
 
 export class Gohighlevel {
 
+    public static BASEURL = 'https://services.leadconnectorhq.com';
     public credientials: Credientials;
     public oauth: OAuth;
     public contacts: Contacts;
     private authData: AuthData;
+
+
     constructor(credientials: Credientials) {
         this.credientials = credientials;
         this.oauth = new OAuth(credientials);
@@ -19,6 +22,11 @@ export class Gohighlevel {
 
     setAuth(authData: AuthData) {
         this.authData = authData;
+        this.authData.headers = {
+            "Version": "2021-04-15",
+            "Authorization": "Bearer " + authData.access_token,
+            "Accept": 'application/json'
+        }
         this.contacts = new Contacts(authData);
     }
 

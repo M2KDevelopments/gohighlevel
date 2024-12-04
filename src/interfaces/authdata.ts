@@ -4,5 +4,10 @@ export interface AuthData {
     refresh_token?: string,
     expires_in?: number,
     userType?: string
-    scope?: string
+    scope?: string,
+    headers?: {
+        Version: "2021-04-15" | string,
+        Authorization?: string,
+        Accept: 'application/json' | string
+    }
 }

@@ -14,7 +14,7 @@ const GHL = new Gohighlevel({
     clientSecret: CLIENT_ID_SECRET,
     redirectUri: redirect_uri,
     isWhiteLabel: true,
-    scopes: ["calendars.write"]
+    scopes: ["contacts.readonly", "contacts.write", "locations.readonly"]
 })
 ```
 
