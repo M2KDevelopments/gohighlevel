@@ -2,6 +2,7 @@ import { Campaign } from "./classes/campaigns";
 import { Company } from "./classes/company";
 import { Contacts } from "./classes/contacts";
 import { OAuth } from "./classes/oauth";
+import { TriggerLink } from "./classes/triggerlinks";
 import { AuthData } from "./interfaces/auth/authdata";
 import { Credientials } from "./interfaces/auth/credientials";
 import axios from "axios";
@@ -14,6 +15,7 @@ export class Gohighlevel {
     public contacts: Contacts;
     public campaigns: Campaign;
     public company: Company;
+    private links: TriggerLink;
     private authData: AuthData;
 
 
@@ -23,6 +25,7 @@ export class Gohighlevel {
         this.contacts = new Contacts();
         this.campaigns = new Campaign();
         this.company = new Company();
+        this.links = new TriggerLink();
         this.authData = { access_token: "", locationId: "" };
     }
 
@@ -36,6 +39,7 @@ export class Gohighlevel {
         this.contacts = new Contacts(authData);
         this.campaigns = new Campaign(authData);
         this.company = new Company(authData);
+        this.links = new TriggerLink(authData);
     }
 
     /**
