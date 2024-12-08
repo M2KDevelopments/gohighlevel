@@ -1,0 +1,51 @@
+import axios from "axios";
+import { Gohighlevel } from "..";
+import { AuthData } from "../interfaces/auth/authdata";
+import { ISurvey } from "../interfaces/survey";
+import { ISurveySubmission } from "../interfaces/survey.submission";
+
+export class Survey {
+    private authData?: AuthData;
+
+    /**
+     * Endpoints For Workflow
+     * https://highlevel.stoplight.io/docs/integrations/3c7cf6a44f362-workflows-api
+     */
+    constructor(authToken?: AuthData) {
+        this.authData = authToken;
+    }
+
+
+    /**
+     * Get Surveys
+     * https://highlevel.stoplight.io/docs/integrations/1e9fdbe3f2013-get-surveys
+     * @param locationId
+     */
+    async getAll(locationId: string, skip: number = 0, limit = 20, type = "") {
+        const headers = this.authData?.headers;
+        const response = await axios.get(`${Gohighlevel.BASEURL}/surveys?locationId=${locationId}&limit=${limit}&skip=${skip}${type ? `&type=${type}` : ""}`, { headers });
+        return response.data as {
+            surveys: ISurvey[],
+            total: number,
+        };
+    }
+
+    /**
+    * Get Survey Submissions
+    * https://highlevel.stoplight.io/docs/integrations/288c25c7e319a-get-surveys-submissions
+    * @param locationId
+    */
+    async getSubmissions(locationId: string, skip: number = 0, limit = 20, page = 1, search = "", type = "", startAt = "", endAt = "") {
+        const headers = this.authData?.headers;
+        const response = await axios.get(`${Gohighlevel.BASEURL}/surveys?locationId=${locationId}&limit=${limit}&page=${page}&skip=${skip}${type ? `&type=${type}` : ""}${startAt ? `&startAt=${startAt}` : ""}${endAt ? `&endAt=${endAt}` : ""}${search ? `&q=${search}` : ""}`, { headers });
+        return response.data as {
+            submissions: ISurveySubmission[],
+            meta: {
+                total: number,
+                currentPage: number,
+                nextPage: string | null,
+                prevPage: string | null
+            }
+        };
+    }
+}

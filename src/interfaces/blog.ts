@@ -1,0 +1,21 @@
+export interface IBlog {
+    title: string,
+    locationId: string,
+    blogId?: string,
+    imageUrl: string,
+    description: string,
+    rawHTML: string,
+    status: string,
+    wordCount: number,
+    readTimeInMinutes: number,
+    archived: boolean,
+    imageAltText: string,
+    currentVersion:string,
+    metaData: any,
+    categories: string[],
+    tags:string[],
+    author: string,
+    urlSlug: string,
+    canonicalLink: string,
+    publishedAt: string
+}
