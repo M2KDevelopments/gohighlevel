@@ -82,10 +82,10 @@ export class Contacts {
      * @param {CreateContactInfo} contact  - The contact information including email, name, phone, company, and source.
      * @returns The newly created contact.
      */
-    async create(contact: IContact) {
+    async create(contact: IContact, locationId: string = "") {
+        const l = locationId ? locationId : this.authData?.locationId;
         const headers = this.authData?.headers;
-        const locationId = this.authData?.locationId
-        const body = { ...contact, locationId: locationId };
+        const body = { ...contact, locationId: l };
         const response = await axios.post(`${Gohighlevel.BASEURL}/contacts/`, body, { headers });
         const c: IContact = response.data.contact;
         return c;
@@ -99,10 +99,10 @@ export class Contacts {
      * @param contact 
      * @returns 
      */
-    async update(id: string, contact: IContact) {
+    async update(id: string, contact: IContact, locationId: string = "") {
+        const l = locationId ? locationId : this.authData?.locationId;
         const headers = this.authData?.headers;
-        const locationId = this.authData?.locationId
-        const body = { ...contact, locationId: locationId };
+        const body = { ...contact, locationId: l };
         const response = await axios.put(`${Gohighlevel.BASEURL}/contacts/${id}`, body, { headers });
         const c: IContact = response.data.contact;
         return c;

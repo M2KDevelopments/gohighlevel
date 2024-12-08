@@ -30,15 +30,15 @@ function oauth(req, res) {
     
     // or if you want to add scopes this way
     url = GHL.oauth
-                // you can add the necessary scopes for your 
-                // using the Builder Design Pattern
-                .scopeBusinessesReadonly()
-                .scopeBusinessesWrite()
-                .scopeCalendarsReadonly()
-                .scopeCalendarsEventsWrite()
+        // you can add the necessary scopes for your 
+        // using the Builder Design Pattern
+        .scopeBusinessesReadonly()
+        .scopeBusinessesWrite()
+        .scopeCalendarsReadonly()
+        .scopeCalendarsEventsWrite()
 
-                // get the oauth URL
-                .getOAuthURL()
+        // get the oauth URL
+        .getOAuthURL()
     
 
     return res.status(200).redirect(url);
