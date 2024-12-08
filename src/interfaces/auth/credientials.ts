@@ -2,11 +2,11 @@ export interface Credientials {
     clientId: string,
     clientSecret: string,
     redirectUri: string,
-    scopes: ['companies.readonly' | 
+    scopes: ['companies.readonly' |
         'conversations.readonly' |
         'links.write' |
         'links.readonly' |
-        
+
         'calendars.write' |
         'calendars.readonly' |
         'calendars/events.readonly' |
@@ -14,10 +14,10 @@ export interface Credientials {
 
         'calendars/groups.readonly' |
         'calendars/groups.write' |
-        
+
         'calendars/resources.readonly' |
         'calendars/resources.write' |
-        
+
         'locations.write' |
         'locations/customFields.readonly' |
         'locations/customValues.write' |

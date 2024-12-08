@@ -17,6 +17,10 @@ import axios from "axios";
 export class Gohighlevel {
 
     public static BASEURL = 'https://services.leadconnectorhq.com';
+    private static PROD = "https://services.leadconnectorhq.com";
+    private static MOCK = "https://stoplight.io/mocks/highlevel/integrations/39582850";
+
+
     public credientials: Credientials;
     public oauth: OAuth;
     public contacts: Contacts;
@@ -49,6 +53,11 @@ export class Gohighlevel {
         this.forms = new Form();
         this.subaccounts = new SubAccount();
         this.authData = { access_token: "", locationId: "" };
+    }
+
+    static setTestMode(test: boolean) {
+        if (test) this.BASEURL = this.MOCK;
+        else this.BASEURL = this.PROD;
     }
 
     /**
