@@ -1,7 +1,13 @@
+import { Blog } from "./classes/blogs";
+import { Business } from "./classes/business";
 import { Campaign } from "./classes/campaigns";
 import { Company } from "./classes/company";
 import { Contacts } from "./classes/contacts";
+import { Workflow } from "./classes/contacts.workflows";
+import { Course } from "./classes/courses";
+import { Form } from "./classes/forms";
 import { OAuth } from "./classes/oauth";
+import { Survey } from "./classes/surveys";
 import { TriggerLink } from "./classes/triggerlinks";
 import { AuthData } from "./interfaces/auth/authdata";
 import { Credientials } from "./interfaces/auth/credientials";
@@ -16,6 +22,13 @@ export class Gohighlevel {
     public campaigns: Campaign;
     public company: Company;
     public links: TriggerLink;
+    public courses: Course;
+    public businesses: Business;
+    public workflows: Workflow;
+    public surveys: Survey;
+    public blogs: Blog;
+    public forms: Form;
+
     private authData: AuthData;
 
 
@@ -26,6 +39,12 @@ export class Gohighlevel {
         this.campaigns = new Campaign();
         this.company = new Company();
         this.links = new TriggerLink();
+        this.courses = new Course();
+        this.businesses = new Business();
+        this.workflows = new Workflow();
+        this.surveys = new Survey();
+        this.blogs = new Blog();
+        this.forms = new Form();
         this.authData = { access_token: "", locationId: "" };
     }
 
@@ -45,6 +64,12 @@ export class Gohighlevel {
         this.campaigns = new Campaign(authData);
         this.company = new Company(authData);
         this.links = new TriggerLink(authData);
+        this.courses = new Course(authData);
+        this.businesses = new Business(authData);
+        this.workflows = new Workflow(authData);
+        this.surveys = new Survey(authData);
+        this.blogs = new Blog(authData);
+        this.forms = new Form(authData);
     }
 
     /**

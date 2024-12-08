@@ -2,13 +2,13 @@ import axios from "axios";
 import { Gohighlevel } from "..";
 import { AuthData } from "../interfaces/auth/authdata";
 import { ISurvey } from "../interfaces/survey";
-import { ISurveySubmission } from "../interfaces/survey.submission";
+import { ISubmission } from "../interfaces/submission";
 
 export class Survey {
     private authData?: AuthData;
 
     /**
-     * Endpoints For Workflow
+     * Endpoints For Surveys
      * https://highlevel.stoplight.io/docs/integrations/3c7cf6a44f362-workflows-api
      */
     constructor(authToken?: AuthData) {
@@ -39,7 +39,7 @@ export class Survey {
         const headers = this.authData?.headers;
         const response = await axios.get(`${Gohighlevel.BASEURL}/surveys?locationId=${locationId}&limit=${limit}&page=${page}&skip=${skip}${type ? `&type=${type}` : ""}${startAt ? `&startAt=${startAt}` : ""}${endAt ? `&endAt=${endAt}` : ""}${search ? `&q=${search}` : ""}`, { headers });
         return response.data as {
-            submissions: ISurveySubmission[],
+            submissions: ISubmission[],
             meta: {
                 total: number,
                 currentPage: number,

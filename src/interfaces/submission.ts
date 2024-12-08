@@ -1,4 +1,4 @@
-export interface ISurveySubmission {
+export interface ISubmission {
     id: string,
     contactId: string,
     createdAt: string,
