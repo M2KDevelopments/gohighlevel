@@ -1,6 +1,11 @@
 # Go High Level Node JS
 Go Highlevel Node Js ease of use library implementation to their API. Make sure you've create a Go Highlevel App in the <a href="https://marketplace.gohighlevel.com/" target="_blank">Market Place</a>
 
+<br/>
+<img src="/ghl.jpg" alt="Highlevel" width="420">
+<br/>
+
+
 <a href="https://www.buymeacoffee.com/m2kdevelopments" target="_blank">
     <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" />
 </a>
@@ -10,8 +15,12 @@ Go Highlevel Node Js ease of use library implementation to their API. Make sure 
 </a>
 
 
+
+
 ## Brief Overview of the Library
 We recommend that you glance over the official <a href="https://highlevel.stoplight.io/docs/integrations/0443d7d1a4bd0-overview" target="_blank">Go Highlevel Documentation</a>. We have tried to make the library have a corresponding function for each endpoint. Enjoy the intellisense!
+
+
 
 
 ## Initialization
@@ -32,50 +41,42 @@ const GHL = new Gohighlevel({
 
 ### OAuth URL
 ```
-function oauth(req, res) {
-
-    // use the scopes when initializing -> new Gohighlevel({ ... })
-    let url = GHL.oauth.getOAuthURL()
+// use the scopes when initializing -> new Gohighlevel({ ... })
+let url = GHL.oauth.getOAuthURL()
     
-    // or if you want to add scopes this way
-    url = GHL.oauth
-        // you can add the necessary scopes for your 
-        // using the Builder Design Pattern
-        .scopeBusinessesReadonly()
-        .scopeBusinessesWrite()
-        .scopeCalendarsReadonly()
-        .scopeCalendarsEventsWrite()
+// or if you want to add scopes this way
+url = GHL.oauth
+    // you can add the necessary scopes for your 
+    // using the Builder Design Pattern
+    .scopeBusinessesReadonly()
+    .scopeBusinessesWrite()
+    .scopeCalendarsReadonly()
+    .scopeCalendarsEventsWrite()
 
-        // get the oauth URL
-        .getOAuthURL()
-    
-
-    return res.status(200).redirect(url);
-}
-
+    // get the oauth URL
+    .getOAuthURL()
 
 ```
+
+
+
 ### OAuth Callback
 ```
-async function callback(req, res) {
-    
-    // Get Auth Info
-    let code = req.query.code;
-    let refresh_token = req.query.refresh_token;
-    let authInfo = GHL.oauth.getCallbackAuthTokens({
-        code: code,
-        refresh_token: refresh_token
-    });
+// Get Auth Info
+const code = req.query.code;
+const refresh_token = req.query.refresh_token;
+const authInfo = GHL.oauth.getCallbackAuthTokens({
+    code: code,
+    refresh_token: refresh_token
+});
 
-    // Set Auth Info
-    GHL.setAuth(authInfo);
+// Set Auth Info
+GHL.setAuth(authInfo);
 
 
-    // Use GHL API
-    // Corresponse with the endpoint - https://highlevel.stoplight.io/docs/integrations/ab55933a57f6f-get-contacts
-    let contacts = await GHL.getContacts();
-
-    return res.status(200).json(contacts);
-}
+// Use GHL API
+// Corresponse with the endpoint - https://highlevel.stoplight.io/docs/integrations/ab55933a57f6f-get-contacts
+const contacts = await GHL.getContacts();
+console.log(contacts);
 ```
 
