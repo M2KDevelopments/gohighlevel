@@ -10,8 +10,8 @@ export class Course {
      * Endpoints For Course
      * https://highlevel.stoplight.io/docs/integrations/ddc0780ee588c-memberships-api
      */
-    constructor(authToken?: AuthData) {
-        this.authData = authToken;
+    constructor(authData?: AuthData) {
+        this.authData = authData;
     }
 
     /**

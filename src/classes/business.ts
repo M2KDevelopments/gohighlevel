@@ -10,8 +10,8 @@ export class Business {
      * Endpoints For Businesss
      * https://highlevel.stoplight.io/docs/integrations/bb6b717cac89c-business-api
      */
-    constructor(authToken?: AuthData) {
-        this.authData = authToken;
+    constructor(authData?: AuthData) {
+        this.authData = authData;
     }
 
 

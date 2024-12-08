@@ -10,8 +10,8 @@ export class TriggerLink {
      * Endpoints For Trigger Links
      * https://highlevel.stoplight.io/docs/integrations/85c4db13a5d69-links-api
      */
-    constructor(authToken?: AuthData) {
-        this.authData = authToken;
+    constructor(authData?: AuthData) {
+        this.authData = authData;
     }
 
 

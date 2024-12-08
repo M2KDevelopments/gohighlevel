@@ -10,8 +10,8 @@ export class Task {
      * Endpoints For Contacts for Tasks
      * https://highlevel.stoplight.io/docs/integrations/db572d519b209-get-all-tasks
      */
-    constructor(authToken?: AuthData) {
-        this.authData = authToken;
+    constructor(authData?: AuthData) {
+        this.authData = authData;
     }
 
 

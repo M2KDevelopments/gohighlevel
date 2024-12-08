@@ -10,8 +10,8 @@ export class Blog {
      * Endpoints For Blogs
      * https://highlevel.stoplight.io/docs/integrations/4c364bc1d8c73-blogs-api
      */
-    constructor(authToken?: AuthData) {
-        this.authData = authToken;
+    constructor(authData?: AuthData) {
+        this.authData = authData;
     }
 
 

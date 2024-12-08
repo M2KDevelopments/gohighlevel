@@ -9,8 +9,8 @@ export class Campaign {
      * Endpoints For Contacts for Campaigns
      * Documentation: https://highlevel.stoplight.io/docs/integrations/ecf9b5b45deaf-add-contact-to-campaign
      */
-    constructor(authToken?: AuthData) {
-        this.authData = authToken;
+    constructor(authData?: AuthData) {
+        this.authData = authData;
     }
 
 

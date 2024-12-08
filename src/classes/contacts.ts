@@ -24,14 +24,14 @@ export class Contacts {
      * Endpoints For Contacts
      * https://highlevel.stoplight.io/docs/integrations/e957726e8625d-contacts-api
      */
-    constructor(authToken?: AuthData) {
-        this.appointments = new Appointment(authToken);
-        this.campaigns = new Campaign(authToken);
-        this.workflows = new Workflow(authToken);
-        this.tasks = new Task(authToken);
-        this.notes = new Note(authToken);
-        this.tags = new Tag(authToken);
-        this.authData = authToken;
+    constructor(authData?: AuthData) {
+        this.appointments = new Appointment(authData);
+        this.campaigns = new Campaign(authData);
+        this.workflows = new Workflow(authData);
+        this.tasks = new Task(authData);
+        this.notes = new Note(authData);
+        this.tags = new Tag(authData);
+        this.authData = authData;
     }
 
     /**

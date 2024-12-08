@@ -11,8 +11,8 @@ export class Campaign {
      * Endpoints For Campaigns
      * https://highlevel.stoplight.io/docs/integrations/35a5ad3408e98-campaigns-api
      */
-    constructor(authToken?: AuthData) {
-        this.authData = authToken;
+    constructor(authData?: AuthData) {
+        this.authData = authData;
     }
 
     /**

@@ -9,8 +9,8 @@ export class Workflow {
      * Endpoints For Contacts Workflow
      * https://highlevel.stoplight.io/docs/integrations/fe0f421553a9e-add-contact-to-workflow
      */
-    constructor(authToken?: AuthData) {
-        this.authData = authToken;
+    constructor(authData?: AuthData) {
+        this.authData = authData;
     }
 
     /**

@@ -9,8 +9,8 @@ export class Tag {
      * Endpoints For Contacts Tags
      * https://highlevel.stoplight.io/docs/integrations/c9bbad7cdacf5-add-tags
      */
-    constructor(authToken?: AuthData) {
-        this.authData = authToken;
+    constructor(authData?: AuthData) {
+        this.authData = authData;
     }
 
     /**

@@ -1,0 +1,15 @@
+export interface ICustomField {
+    id?: string,
+    locationId: string,
+    model: "contact" | "opportunity" | "all",
+    name: string,
+    fieldKey?: string,
+    placeholder?: string,
+    dataType: "TEXT" | string,
+    position?: number,
+    picklistOptions?: string[],
+    picklistImageOptions?: [],
+    isAllowedCustomOption?: boolean,
+    isMultiFileAllowed?: boolean,
+    maxFileLimit?: number,
+}

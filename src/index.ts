@@ -7,6 +7,7 @@ import { Workflow } from "./classes/contacts.workflows";
 import { Course } from "./classes/courses";
 import { Form } from "./classes/forms";
 import { OAuth } from "./classes/oauth";
+import { SubAccount } from "./classes/subaccounts";
 import { Survey } from "./classes/surveys";
 import { TriggerLink } from "./classes/triggerlinks";
 import { AuthData } from "./interfaces/auth/authdata";
@@ -28,6 +29,7 @@ export class Gohighlevel {
     public surveys: Survey;
     public blogs: Blog;
     public forms: Form;
+    public subaccounts: SubAccount;
 
     private authData: AuthData;
 
@@ -45,6 +47,7 @@ export class Gohighlevel {
         this.surveys = new Survey();
         this.blogs = new Blog();
         this.forms = new Form();
+        this.subaccounts = new SubAccount();
         this.authData = { access_token: "", locationId: "" };
     }
 

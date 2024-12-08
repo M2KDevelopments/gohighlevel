@@ -10,8 +10,8 @@ export class Appointment {
      * Endpoints For Appointments
      * https://highlevel.stoplight.io/docs/integrations/6015cf49a7ae8-get-appointments-for-contact
      */
-    constructor(authToken?: AuthData) {
-        this.authData = authToken;
+    constructor(authData?: AuthData) {
+        this.authData = authData;
     }
 
 

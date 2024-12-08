@@ -85,8 +85,8 @@ export class Conversations {
      * Endpoints For Conversations
      * https://highlevel.stoplight.io/docs/integrations/7fd1120fbd540-conversations-api
      */
-    constructor(authToken?: AuthData) {
-        this.authData = authToken;
+    constructor(authData?: AuthData) {
+        this.authData = authData;
     }
 
     getAll() {

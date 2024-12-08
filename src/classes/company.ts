@@ -11,8 +11,8 @@ export class Company {
      * Endpoints For Campaigns
      * https://highlevel.stoplight.io/docs/integrations/ba0a4912b7899-companies-api
      */
-    constructor(authToken?: AuthData) {
-        this.authData = authToken;
+    constructor(authData?: AuthData) {
+        this.authData = authData;
     }
 
     /**

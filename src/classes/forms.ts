@@ -11,8 +11,8 @@ export class Form {
      * Endpoints For Forms
      * https://highlevel.stoplight.io/docs/integrations/0af2368376eb2-forms-api
      */
-    constructor(authToken?: AuthData) {
-        this.authData = authToken;
+    constructor(authData?: AuthData) {
+        this.authData = authData;
     }
 
 
