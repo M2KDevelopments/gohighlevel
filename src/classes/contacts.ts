@@ -34,11 +34,33 @@ export class Contacts {
         this.authData = authData;
     }
 
+
     /**
-     * Get contacts
+     * Get contacts. [Deprecated]
+     * Documentation - https://highlevel.stoplight.io/docs/integrations/dbe4f3a00a106-search-contacts
+     * @param locationId 
+     * @param filters 
+     * @returns 
+     */
+    async get(locationId: string, filters: { query?: string, startAfter?: number, startAfterId?: string, limit?: number }) {
+        const headers = this.authData?.headers;
+        let q = ``;
+        if (filters.query) q = `&query=${filters.query}`;
+        if (filters.startAfter) q = `&startAfter=${filters.startAfter}`
+        if (filters.startAfterId) q = `&startAfterId=${filters.startAfterId}`
+        if (filters.limit) q = `&limit=${filters.limit}`
+
+        const response = await axios.get(`${Gohighlevel.BASEURL}/contacts?locationId=${locationId}${q}`, { headers });
+        const contacts: Array<IContact> = response.data.contacts;
+        const count: number = response.data.count;
+        return { count, contacts };
+    }
+
+    /**
+     * Search contacts
      * Documentation - https://highlevel.stoplight.io/docs/integrations/dbe4f3a00a106-search-contacts
      */
-    async getContacts() {
+    async search() {
         const headers = this.authData?.headers;
         const body = {};
         const response = await axios.post(`${Gohighlevel.BASEURL}/contacts/search/`, body, { headers });
