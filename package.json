@@ -1,8 +1,10 @@
 {
   "name": "gohighlevel",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Go Highlevel Node Js ease of use library implementation to their API",
-  "main": "/src/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "commonjs",
   "scripts": {
     "dev": "tsc && node dist/index.js",
     "build": "tsc",
@@ -12,6 +14,9 @@
     "type": "git",
     "url": "git+https://github.com/M2KDevelopments/gohighlevel.git"
   },
+  "files": [
+    "/dist"
+  ],
   "keywords": [
     "gohighlevel",
     "highlevel",
