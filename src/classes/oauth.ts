@@ -83,7 +83,7 @@ export class OAuth {
      */
     private addScope(scope: string) {
         const set = new Set<string>();
-        for (const s of this.credientials.scopes) set.add(s);
+        for (const s of (this.credientials.scopes || [])) set.add(s);
         set.add(scope);
         this.credientials.scopes = Array.from(set.values())
         return this;
