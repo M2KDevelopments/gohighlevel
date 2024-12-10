@@ -1,6 +1,6 @@
 {
   "name": "gohighlevel",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Go Highlevel Node Js ease of use library implementation to their API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
