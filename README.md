@@ -1,22 +1,11 @@
 # Go High Level Node JS
  
 <br/>
-<img src="/ghl.jpg" alt="Highlevel" width="420">
+<img src="./ghl.jpg" alt="Highlevel" width="420">
 <br/>
 
 
 Go Highlevel Node Js ease of use library implementation to their API. Make sure you've create a Go Highlevel App in the <a href="https://marketplace.gohighlevel.com/" target="_blank">Market Place</a>
-
-
-
-<a href="https://www.buymeacoffee.com/m2kdevelopments" target="_blank">
-    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" />
-</a>
-
-<a href="https://paypal.me/m2kdevelopment" target="_blank">
-    <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal Logo" />
-</a>
-
 
 
 
@@ -83,3 +72,15 @@ const contacts = await GHL.getContacts();
 console.log(contacts);
 ```
 
+
+
+## Support
+You can support us with any amount. It's all appreciated.
+
+<a href="https://www.buymeacoffee.com/m2kdevelopments" target="_blank">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" />
+</a>
+
+<a href="https://paypal.me/m2kdevelopment" target="_blank">
+    <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal Logo" />
+</a>
