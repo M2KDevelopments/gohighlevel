@@ -60,10 +60,13 @@ async function callback(req, res){
    // Get Auth Info
    const code = req.query.code;
    const refresh_token = req.query.refresh_token;
-   const authInfo = GHL.oauth.getCallbackAuthTokens({
-       code: code,
-       refresh_token: refresh_token
-   });
+   const authInfo = await GHL.oauth.getCallbackAuthTokens({
+        code: code,
+        refresh_token: refresh_token
+    });
+
+   // log token values 
+   console.log(authInfo.access_token, authInfo.refresh_token, authInfo.expires_in)
    
    // Set Auth Info
    GHL.setAuth(authInfo);
