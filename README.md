@@ -17,6 +17,8 @@ We recommend that you glance over the official <a href="https://highlevel.stopli
 
 ## Initialization
 ```
+import { Gohighlevel } from 'gohighlevel'; // const { Gohighlevel } = require('gohighlevel');
+
 // Create Instance of Gohighlevel
 const GHL = new Gohighlevel({
     // App Info from GHL Market Place
@@ -54,18 +56,23 @@ url = GHL.oauth
 
 ### OAuth Callback
 ```
-// Get Auth Info
-const code = req.query.code;
-const refresh_token = req.query.refresh_token;
-const authInfo = GHL.oauth.getCallbackAuthTokens({
-    code: code,
-    refresh_token: refresh_token
-});
+async function callback(req, res){
+   // Get Auth Info
+   const code = req.query.code;
+   const refresh_token = req.query.refresh_token;
+   const authInfo = GHL.oauth.getCallbackAuthTokens({
+       code: code,
+       refresh_token: refresh_token
+   });
+   
+   // Set Auth Info
+   GHL.setAuth(authInfo);
+}
+```
 
-// Set Auth Info
-GHL.setAuth(authInfo);
 
-
+### Use the API i.e Getting Contacts
+```
 // Use GHL API
 // Corresponse with the endpoint - https://highlevel.stoplight.io/docs/integrations/ab55933a57f6f-get-contacts
 const contacts = await GHL.getContacts();
