@@ -62,7 +62,7 @@ export class OAuth {
 
         // Make API Call to get Auth Tokens
         const response = await axios.post(`https://api.msgsndr.com/oauth/token`, body, { headers });
-        const { access_token, expires_in, scope, locationId, userType, refresh_token } = response.data;
+        const { access_token, expires_in, scope, locationId, companyId, userType, refresh_token } = response.data;
 
 
         // Structure Data
@@ -72,6 +72,7 @@ export class OAuth {
             expires_in: parseInt(expires_in),
             scope: scope,
             locationId: locationId,
+            companyId: companyId,
             userType: userType
         }
         return data;
@@ -250,4 +251,3 @@ export class OAuth {
 }
 
 
- 
