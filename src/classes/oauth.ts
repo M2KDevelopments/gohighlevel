@@ -25,7 +25,7 @@ export class OAuth {
     getOAuthURL() {
         // https://highlevel.stoplight.io/docs/integrations/a04191c0fabf9-authorization
         const client_id = this.credientials.clientId;
-        const redirect_uri = encodeURIComponent(this.credientials.redirectUri);
+        const redirect_uri = encodeURIComponent(this.credientials?.redirectUri || "");
         const scope = encodeURIComponent((this.credientials.scopes || []).join(' '));
         const url = `https://marketplace.${this.credientials.isWhiteLabel ? `leadconnectorhq` : `gohighlevel`}.com/oauth/chooselocation?client_id=${client_id}&response_type=code&scope=${scope}&redirect_uri=${redirect_uri}`;
         return url;
@@ -45,14 +45,14 @@ export class OAuth {
         const body = info.code ?
             new URLSearchParams({
                 grant_type: "authorization_code",
-                client_id: this.credientials.clientId,
-                client_secret: this.credientials.clientSecret,
+                client_id: this.credientials?.clientId || "",
+                client_secret: this.credientials?.clientSecret || "",
                 code: info.code,
             }) :
             new URLSearchParams({
                 grant_type: "refresh_token",
-                client_id: this.credientials.clientId,
-                client_secret: this.credientials.clientSecret,
+                client_id: this.credientials?.clientId || "",
+                client_secret: this.credientials?.clientSecret || "",
                 refresh_token: info.refresh_token!
             })
 

@@ -41,19 +41,44 @@ export class Gohighlevel {
     constructor(credientials: Credientials) {
         this.credientials = credientials;
         this.oauth = new OAuth(credientials);
-        this.contacts = new Contacts();
-        this.campaigns = new Campaign();
-        this.company = new Company();
-        this.links = new TriggerLink();
-        this.courses = new Course();
-        this.businesses = new Business();
-        this.workflows = new Workflow();
-        this.surveys = new Survey();
-        this.blogs = new Blog();
-        this.forms = new Form();
-        this.subaccounts = new SubAccount();
-        this.authData = { access_token: "", locationId: "" };
+
+        if (credientials.apiKey) {
+            this.authData = {
+                access_token: credientials.apiKey,
+                refresh_token: credientials.apiKey,
+                headers: {
+                    "Version": "2021-04-15",
+                    "Authorization": "Bearer " + credientials.apiKey,
+                    "Accept": 'application/json'
+                }
+            }
+            this.contacts = new Contacts(this.authData);
+            this.campaigns = new Campaign(this.authData);
+            this.company = new Company(this.authData);
+            this.links = new TriggerLink(this.authData);
+            this.courses = new Course(this.authData);
+            this.businesses = new Business(this.authData);
+            this.workflows = new Workflow(this.authData);
+            this.surveys = new Survey(this.authData);
+            this.blogs = new Blog(this.authData);
+            this.forms = new Form(this.authData);
+            this.subaccounts = new SubAccount(this.authData);
+        } else {
+            this.contacts = new Contacts();
+            this.campaigns = new Campaign();
+            this.company = new Company();
+            this.links = new TriggerLink();
+            this.courses = new Course();
+            this.businesses = new Business();
+            this.workflows = new Workflow();
+            this.surveys = new Survey();
+            this.blogs = new Blog();
+            this.forms = new Form();
+            this.subaccounts = new SubAccount();
+            this.authData = { access_token: "", locationId: "" };
+        }
     }
+
 
     /**
      * Use mock or live server
@@ -102,8 +127,8 @@ export class Gohighlevel {
         try {
             const body = new URLSearchParams({
                 grant_type: "refresh_token",
-                client_id: this.credientials.clientId,
-                client_secret: this.credientials.clientSecret,
+                client_id: this.credientials?.clientId || "",
+                client_secret: this.credientials?.clientSecret || "",
                 refresh_token: this.authData.refresh_token ?? ""
             })
             const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }

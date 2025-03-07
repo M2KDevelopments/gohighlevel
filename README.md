@@ -14,10 +14,11 @@ Go Highlevel Node Js ease of use library implementation to their API. Make sure 
 
 
 
-## Brief Overview of the Library
+## Brief Overview of the Library GHL APP
 We recommend that you glance over the official <a href="https://highlevel.stoplight.io/docs/integrations/0443d7d1a4bd0-overview" target="_blank">Go Highlevel Documentation</a>. We have tried to make the library have a corresponding function for each endpoint. Enjoy the intellisense!
 
-
+## Brief Overview of the Library GHL API Key
+We recommend that you glance over the official <a href="https://public-api.gohighlevel.com/#intro" target="_blank">Go Highlevel Documentation</a>. We have tried to make the library have a corresponding function for each endpoint. Enjoy the intellisense!
 
 
 ## Initialization
@@ -25,6 +26,8 @@ We recommend that you glance over the official <a href="https://highlevel.stopli
 import { Gohighlevel } from 'gohighlevel'; // const { Gohighlevel } = require('gohighlevel');
 
 // Create Instance of Gohighlevel
+
+// if you want to use the OAuth Way
 const GHL = new Gohighlevel({
     // App Info from GHL Market Place
     clientId: process.env.CLIENT_ID,
@@ -34,6 +37,10 @@ const GHL = new Gohighlevel({
     isWhiteLabel: true,
     scopes: ["contacts.readonly", "contacts.write", "locations.readonly"]
 })
+
+// Or if you just want to an API Key
+// How to get API Key - https://www.youtube.com/watch?v=Blr6jTYP3nM&t=3s&pp=ygUeaG93IHRvIGdldCBnb2hpZ2hsZXZlbCBhcGkga2V5
+const GHL = new Gohighlevel({ apiKey: process.env.GOHIGHLEVEL_API_KEY })
 ```
 
 
