@@ -55,6 +55,10 @@ export class Gohighlevel {
         this.authData = { access_token: "", locationId: "" };
     }
 
+    /**
+     * Use mock or live server
+     * @param test 
+     */
     static setTestMode(test: boolean) {
         if (test) this.BASEURL = this.MOCK;
         else this.BASEURL = this.PROD;

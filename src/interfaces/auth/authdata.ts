@@ -4,7 +4,8 @@ export interface AuthData {
     companyId?: string,
     refresh_token?: string,
     expires_in?: number,
-    userType?: string
+    userType?: string,
+    useAPIKey?: string,
     scope?: "Company" | "Location" | string,
     headers?: {
         Version: "2021-04-15" | string,
