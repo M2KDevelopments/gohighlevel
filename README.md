@@ -22,7 +22,7 @@ We recommend that you glance over the official <a href="https://public-api.gohig
 
 
 ## Initialization
-```
+```javascript
 import { Gohighlevel } from 'gohighlevel'; // const { Gohighlevel } = require('gohighlevel');
 
 // Create Instance of Gohighlevel
@@ -46,7 +46,7 @@ const GHL = new Gohighlevel({ apiKey: process.env.GOHIGHLEVEL_API_KEY })
 
 
 ### OAuth URL
-```
+```javascript
 // use the scopes when initializing -> new Gohighlevel({ ... })
 let url = GHL.oauth.getOAuthURL()
     
@@ -67,7 +67,7 @@ url = GHL.oauth
 
 
 ### OAuth Callback
-```
+```javascript
 async function callback(req, res){
    // Get Auth Info
    const code = req.query.code;
@@ -87,7 +87,7 @@ async function callback(req, res){
 
 
 ### Use the API i.e Getting Contacts
-```
+```javascript
 // Use GHL API
 // Corresponse with the endpoint - https://highlevel.stoplight.io/docs/integrations/ab55933a57f6f-get-contacts
 const contacts = await GHL.getContacts();
