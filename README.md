@@ -17,7 +17,7 @@ Go Highlevel Node Js ease of use library implementation to their API. Make sure 
 ## Brief Overview of the Library GHL APP
 We recommend that you glance over the official <a href="https://highlevel.stoplight.io/docs/integrations/0443d7d1a4bd0-overview" target="_blank">Go Highlevel Documentation</a>. We have tried to make the library have a corresponding function for each endpoint. Enjoy the intellisense!
 
-## Brief Overview of the Library GHL API Key
+## Brief Overview of the Library GHL using API Key
 We recommend that you glance over the official <a href="https://public-api.gohighlevel.com/#intro" target="_blank">Go Highlevel Documentation</a>. We have tried to make the library have a corresponding function for each endpoint. Enjoy the intellisense!
 
 
@@ -45,7 +45,7 @@ const GHL = new Gohighlevel({ apiKey: process.env.GOHIGHLEVEL_API_KEY })
 
 
 
-### OAuth URL
+### OAuth URL for GHL App
 ```javascript
 // use the scopes when initializing -> new Gohighlevel({ ... })
 let url = GHL.oauth.getOAuthURL()
@@ -66,7 +66,7 @@ url = GHL.oauth
 
 
 
-### OAuth Callback
+### OAuth Callback for GHL App 
 ```javascript
 async function callback(req, res){
    // Get Auth Info

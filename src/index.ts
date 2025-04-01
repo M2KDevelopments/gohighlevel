@@ -17,9 +17,9 @@ import axios from "axios";
 export class Gohighlevel {
 
     public static BASEURL = 'https://services.leadconnectorhq.com';
+    private static BASE_API_URL = 'https://rest.gohighlevel.com/v1';
     private static PROD = "https://services.leadconnectorhq.com";
     private static MOCK = "https://stoplight.io/mocks/highlevel/integrations/39582850";
-
 
     public credientials: Credientials;
     public oauth: OAuth;
@@ -43,7 +43,9 @@ export class Gohighlevel {
         this.oauth = new OAuth(credientials);
 
         if (credientials.apiKey) {
+            Gohighlevel.BASEURL = Gohighlevel.BASE_API_URL
             this.authData = {
+                useAPIKey: true,
                 access_token: credientials.apiKey,
                 refresh_token: credientials.apiKey,
                 headers: {

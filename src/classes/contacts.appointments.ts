@@ -9,6 +9,7 @@ export class Appointment {
     /**
      * Endpoints For Appointments
      * https://highlevel.stoplight.io/docs/integrations/6015cf49a7ae8-get-appointments-for-contact
+     * https://public-api.gohighlevel.com/#dbf523a3-c344-44cc-adf7-34b68c40dc81
      */
     constructor(authData?: AuthData) {
         this.authData = authData;
@@ -16,8 +17,9 @@ export class Appointment {
 
 
     /**
-     * Get appointments for contact
+     * Get appointments for contact. For both GHL App and API
      * Documentation - https://highlevel.stoplight.io/docs/integrations/6015cf49a7ae8-get-appointments-for-contact
+     * Documentation - https://public-api.gohighlevel.com/#af42b0d8-f002-4d09-a1a9-f860d653127f
      */
     async get(contactId: string) {
         const headers = this.authData?.headers;

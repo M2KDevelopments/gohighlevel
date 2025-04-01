@@ -17,6 +17,7 @@ export class Campaign {
     /**
      * Add Contact to Campaign
      * Documentation: https://highlevel.stoplight.io/docs/integrations/ecf9b5b45deaf-add-contact-to-campaign
+     * https://public-api.gohighlevel.com/#8a506dff-cea3-48bc-909f-4f85a0e8a7be
      * @param contactId 
      * @param campaignId
      * @returns 
