@@ -89,8 +89,10 @@ async function callback(req, res){
 ### Use the API i.e Getting Contacts
 ```javascript
 // Use GHL API
-// Corresponse with the endpoint - https://highlevel.stoplight.io/docs/integrations/ab55933a57f6f-get-contacts
-const contacts = await GHL.getContacts();
+// Corresponse with the endpoint
+// For GHL APP - https://highlevel.stoplight.io/docs/integrations/ab55933a57f6f-get-contacts
+// For GHL API KEY - https://public-api.gohighlevel.com/#0097b747-33c2-452f-8c78-aab5ab36c071
+const contacts = GHL.contacts.search("Martin")
 console.log(contacts);
 ```
 
