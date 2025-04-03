@@ -19,7 +19,7 @@ export class CustomField {
     */
     async getAll(locationId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/location/${locationId}/customFields`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/location/${locationId}/customFields`, { headers });
         return response.data.customFields as ICustomField[];
     }
 
@@ -31,7 +31,7 @@ export class CustomField {
     */
     async get(customFieldId: string, locationId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/location/${locationId}/customFields/${customFieldId}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/location/${locationId}/customFields/${customFieldId}`, { headers });
         return response.data.customField as ICustomField;
     }
 
@@ -43,7 +43,7 @@ export class CustomField {
      */
     async add(locationId: string, customField: ICustomField) {
         const headers = this.authData?.headers;
-        const response = await axios.post(`${Gohighlevel.BASEURL}/location/${locationId}/customFields`, customField, { headers });
+        const response = await axios.post(`${this.authData?.baseurl}/location/${locationId}/customFields`, customField, { headers });
         return response.data.customField as ICustomField;
     }
 
@@ -56,7 +56,7 @@ export class CustomField {
      */
     async update(customFieldId: string, locationId: string, customField: ICustomField) {
         const headers = this.authData?.headers;
-        const response = await axios.put(`${Gohighlevel.BASEURL}/location/${locationId}/customFields/${customFieldId}`, customField, { headers });
+        const response = await axios.put(`${this.authData?.baseurl}/location/${locationId}/customFields/${customFieldId}`, customField, { headers });
         return response.data.customField as ICustomField;
     }
 
@@ -68,7 +68,7 @@ export class CustomField {
      */
     async remove(customFieldId: string, locationId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.delete(`${Gohighlevel.BASEURL}/location/${locationId}/customFields/${customFieldId}`, { headers });
+        const response = await axios.delete(`${this.authData?.baseurl}/location/${locationId}/customFields/${customFieldId}`, { headers });
         return response.data.succeded as boolean;
     }
 }

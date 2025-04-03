@@ -22,7 +22,7 @@ export class Business {
      */
     async getAll(locationId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/businesses?locationId=${locationId}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/businesses?locationId=${locationId}`, { headers });
         return response.data.businesses as IBusiness[];
     }
 
@@ -34,7 +34,7 @@ export class Business {
      */
     async get(businessId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/businesses/${businessId}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/businesses/${businessId}`, { headers });
         return response.data.business as IBusiness;
     }
 
@@ -46,7 +46,7 @@ export class Business {
      */
     async add(business: IBusiness) {
         const headers = this.authData?.headers;
-        const response = await axios.post(`${Gohighlevel.BASEURL}/businesses`, business, { headers });
+        const response = await axios.post(`${this.authData?.baseurl}/businesses`, business, { headers });
         return response.data.business as IBusiness;
     }
 
@@ -59,7 +59,7 @@ export class Business {
      */
     async update(businessId: string, business: IBusiness) {
         const headers = this.authData?.headers;
-        const response = await axios.put(`${Gohighlevel.BASEURL}/businesses/${businessId}`, business, { headers });
+        const response = await axios.put(`${this.authData?.baseurl}/businesses/${businessId}`, business, { headers });
         return response.data.business as IBusiness;
     }
 
@@ -71,7 +71,7 @@ export class Business {
      */
     async remove(businessId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.delete(`${Gohighlevel.BASEURL}/businesses/${businessId}`, { headers });
+        const response = await axios.delete(`${this.authData?.baseurl}/businesses/${businessId}`, { headers });
         return response.data.succeded as boolean;
     }
 }

@@ -24,7 +24,7 @@ export class Campaign {
      */
     async add(contactId: string, campaignId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.post(`${Gohighlevel.BASEURL}/contacts/${contactId}/campaigns/${campaignId}`, {  }, { headers });
+        const response = await axios.post(`${this.authData?.baseurl}/contacts/${contactId}/campaigns/${campaignId}`, {  }, { headers });
         return response.data.succeded as boolean;
     }
 
@@ -38,7 +38,7 @@ export class Campaign {
      */
     async remove(contactId: string, campaignId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.delete(`${Gohighlevel.BASEURL}/contacts/${contactId}/campaigns/${campaignId}`, { headers });
+        const response = await axios.delete(`${this.authData?.baseurl}/contacts/${contactId}/campaigns/${campaignId}`, { headers });
         return response.data.succeded as boolean;
     }
 
@@ -51,7 +51,7 @@ export class Campaign {
      */
     async removeAll(contactId: string, campaignId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.delete(`${Gohighlevel.BASEURL}/contacts/${contactId}/campaigns/${campaignId}/removeAll`, { headers });
+        const response = await axios.delete(`${this.authData?.baseurl}/contacts/${contactId}/campaigns/${campaignId}/removeAll`, { headers });
         return response.data.succeded as boolean;
     }
 }

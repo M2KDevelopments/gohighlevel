@@ -4,6 +4,7 @@
 ![Static Badge](https://img.shields.io/badge/MIT-green?style=plastic&logo=license&logoColor=green&label=license)
 ![Static Badge](https://img.shields.io/badge/buy_me_a_coffee-yellow?style=plastic&logo=buymeacoffee&logoColor=yellow&label=support&link=https%3A%2F%2Fwww.buymeacoffee.com%2Fm2kdevelopments)
 ![Static Badge](https://img.shields.io/badge/paypal-blue?style=plastic&logo=paypal&logoColor=blue&label=support&link=https%3A%2F%2Fpaypal.me%2Fm2kdevelopment)
+![Static Badge](https://img.shields.io/badge/jest-gold?style=plastic&logo=test&logoColor=blue&label=support&link=https%3A%2F%2Fgithub.com%2Fm2kdevelopments)
  
 <br/>
 <img src="./ghl.jpg" alt="Highlevel" width="420">
@@ -19,6 +20,7 @@ We recommend that you glance over the official <a href="https://highlevel.stopli
 
 ## Brief Overview of the Library GHL using API Key
 We recommend that you glance over the official <a href="https://public-api.gohighlevel.com/#intro" target="_blank">Go Highlevel Documentation</a>. We have tried to make the library have a corresponding function for each endpoint. Enjoy the intellisense!
+<img src="./api-instructions.png" />
 
 
 ## Initialization

@@ -21,7 +21,7 @@ export class Campaign {
      */
     async getAll(locationId: string, status: "draft" | "published") {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/campaigns?${locationId}&status=${status}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/campaigns?${locationId}&status=${status}`, { headers });
         const campaigns: Array<ICampaign> = response.data.campaigns;
         return campaigns;
     }

@@ -23,7 +23,7 @@ export class Workflow {
      */
     async add(contactId: string, workflowId: string, eventStartTime: string) {
         const headers = this.authData?.headers;
-        const response = await axios.post(`${Gohighlevel.BASEURL}/contacts/${contactId}/workflow/${workflowId}`, { eventStartTime }, { headers });
+        const response = await axios.post(`${this.authData?.baseurl}/contacts/${contactId}/workflow/${workflowId}`, { eventStartTime }, { headers });
         return response.data.succeded as boolean;
     }
 
@@ -37,7 +37,7 @@ export class Workflow {
      */
     async remove(contactId: string, workflowId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.delete(`${Gohighlevel.BASEURL}/contacts/${contactId}/workflow/${workflowId}`, { headers });
+        const response = await axios.delete(`${this.authData?.baseurl}/contacts/${contactId}/workflow/${workflowId}`, { headers });
         return response.data.succeded as boolean;
     }
 }

@@ -23,7 +23,7 @@ export class Appointment {
      */
     async get(contactId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/contacts/${contactId}/appointments/`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/contacts/${contactId}/appointments/`, { headers });
         const events: Array<IAppointment> = response.data.events;
         return events;
     }

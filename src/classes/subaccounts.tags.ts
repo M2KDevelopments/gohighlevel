@@ -21,7 +21,7 @@ export class Tag {
      */
     async getAll(locationId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/location/${locationId}/tags`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/location/${locationId}/tags`, { headers });
         return response.data.tags as ITag[];
     }
 
@@ -33,7 +33,7 @@ export class Tag {
     */
     async get(tagId: string, locationId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/location/${locationId}/tags/${tagId}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/location/${locationId}/tags/${tagId}`, { headers });
         return response.data.tag as ITag;
     }
 
@@ -45,7 +45,7 @@ export class Tag {
      */
     async add(locationId: string, tag: ITag) {
         const headers = this.authData?.headers;
-        const response = await axios.post(`${Gohighlevel.BASEURL}/location/${locationId}/tags`, tag, { headers });
+        const response = await axios.post(`${this.authData?.baseurl}/location/${locationId}/tags`, tag, { headers });
         return response.data.tag as ITag;
     }
 
@@ -58,7 +58,7 @@ export class Tag {
      */
     async update(tagId: string, locationId: string, tag: ITag) {
         const headers = this.authData?.headers;
-        const response = await axios.put(`${Gohighlevel.BASEURL}/location/${locationId}/tags/${tagId}`, tag, { headers });
+        const response = await axios.put(`${this.authData?.baseurl}/location/${locationId}/tags/${tagId}`, tag, { headers });
         return response.data.tag as ITag;
     }
 
@@ -70,7 +70,7 @@ export class Tag {
      */
     async remove(tagId: string, locationId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.delete(`${Gohighlevel.BASEURL}/location/${locationId}/tags/${tagId}`, { headers });
+        const response = await axios.delete(`${this.authData?.baseurl}/location/${locationId}/tags/${tagId}`, { headers });
         return response.data.succeded as boolean;
     }
 }

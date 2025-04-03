@@ -2,6 +2,11 @@
     "include": [
         "src/**/*"
     ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    },
     "exclude": [
         "node_modules"
     ],

@@ -23,7 +23,7 @@ export class Note {
      */
     async getAll(contactId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/contacts/${contactId}/notes`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/contacts/${contactId}/notes`, { headers });
         return response.data.notes as INote[];
     }
 
@@ -36,7 +36,7 @@ export class Note {
      */
     async get(contactId: string, noteId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/contacts/${contactId}/notes/${noteId}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/contacts/${contactId}/notes/${noteId}`, { headers });
         return response.data.note as INote;
     }
 
@@ -49,7 +49,7 @@ export class Note {
      */
     async add(contactId: string, note: INote) {
         const headers = this.authData?.headers;
-        const response = await axios.post(`${Gohighlevel.BASEURL}/contacts/${contactId}/notes`, note, { headers });
+        const response = await axios.post(`${this.authData?.baseurl}/contacts/${contactId}/notes`, note, { headers });
         return response.data.note as INote;
     }
 
@@ -63,7 +63,7 @@ export class Note {
      */
     async update(contactId: string, noteId: string, note: INote) {
         const headers = this.authData?.headers;
-        const response = await axios.put(`${Gohighlevel.BASEURL}/contacts/${contactId}/notes/${noteId}`, note, { headers });
+        const response = await axios.put(`${this.authData?.baseurl}/contacts/${contactId}/notes/${noteId}`, note, { headers });
         return response.data.note as INote;
     }
 
@@ -76,7 +76,7 @@ export class Note {
      */
     async remove(contactId: string, noteId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.delete(`${Gohighlevel.BASEURL}/contacts/${contactId}/notes/${noteId}`, { headers });
+        const response = await axios.delete(`${this.authData?.baseurl}/contacts/${contactId}/notes/${noteId}`, { headers });
         return response.data.succeded as boolean;
     }
 }

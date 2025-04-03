@@ -23,7 +23,7 @@ export class TriggerLink {
      */
     async getAll(locationId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/links?locationId=${locationId}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/links?locationId=${locationId}`, { headers });
         return response.data.links as ILink[];
     }
 
@@ -37,7 +37,7 @@ export class TriggerLink {
      */
     async add(link: ILink) {
         const headers = this.authData?.headers;
-        const response = await axios.post(`${Gohighlevel.BASEURL}/links`, link, { headers });
+        const response = await axios.post(`${this.authData?.baseurl}/links`, link, { headers });
         return response.data.link as ILink;
     }
 
@@ -51,7 +51,7 @@ export class TriggerLink {
      */
     async update(linkId: string, link: ILink) {
         const headers = this.authData?.headers;
-        const response = await axios.put(`${Gohighlevel.BASEURL}/links/${linkId}`, link, { headers });
+        const response = await axios.put(`${this.authData?.baseurl}/links/${linkId}`, link, { headers });
         return response.data.link as ILink;
     }
 
@@ -64,7 +64,7 @@ export class TriggerLink {
      */
     async remove(linkId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.delete(`${Gohighlevel.BASEURL}/links/${linkId}`, { headers });
+        const response = await axios.delete(`${this.authData?.baseurl}/links/${linkId}`, { headers });
         return response.data.succeded as boolean;
     }
 }

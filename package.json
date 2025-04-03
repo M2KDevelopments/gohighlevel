@@ -1,6 +1,6 @@
 {
   "name": "gohighlevel",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Go Highlevel Node Js ease of use library implementation to their API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "tsc && node dist/index.js",
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watchAll"
   },
   "repository": {
     "type": "git",
@@ -32,10 +32,14 @@
   },
   "homepage": "https://github.com/M2KDevelopments/gohighlevel#readme",
   "dependencies": {
-    "axios": "^1.7.7"
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.7"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.14",
     "@types/node": "^22.10.1",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.3.1",
     "typescript": "^5.6.3"
   }
 }

@@ -24,7 +24,7 @@ export class Blog {
      */
     async getAllCategories(locationId: string, limit: number = 20, offset: number = 0) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/blogs/categories?locationId=${locationId}&limit=${limit}&offset=${offset}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/blogs/categories?locationId=${locationId}&limit=${limit}&offset=${offset}`, { headers });
         return response.data.categories as Array<any>;
     }
 
@@ -37,7 +37,7 @@ export class Blog {
      */
     async getAllAuthors(locationId: string, limit: number = 20, offset: number = 0) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/blogs/authors?locationId=${locationId}&limit=${limit}&offset=${offset}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/blogs/authors?locationId=${locationId}&limit=${limit}&offset=${offset}`, { headers });
         return response.data.authors as Array<any>;
     }
 
@@ -49,7 +49,7 @@ export class Blog {
      */
     async add(blog: IBlog) {
         const headers = this.authData?.headers;
-        const response = await axios.post(`${Gohighlevel.BASEURL}/blogs`, blog, { headers });
+        const response = await axios.post(`${this.authData?.baseurl}/blogs`, blog, { headers });
         return response.data.data as any;
     }
 
@@ -62,7 +62,7 @@ export class Blog {
      */
     async update(blogId: string, blog: IBlog) {
         const headers = this.authData?.headers;
-        const response = await axios.put(`${Gohighlevel.BASEURL}/blogs/${blogId}`, blog, { headers });
+        const response = await axios.put(`${this.authData?.baseurl}/blogs/${blogId}`, blog, { headers });
         return response.data.blog as IBlog;
     }
 
@@ -74,7 +74,7 @@ export class Blog {
      */
     async isSlugUrlExists(locationId: string, urlSlug: string, postId: string = "") {
         const headers = this.authData?.headers;
-        const response = await axios.delete(`${Gohighlevel.BASEURL}/blogs/posts/url-slug-exists?locationId=${locationId}&urlSlug=${urlSlug}${postId ? `&postId=${postId}` : ``}`, { headers });
+        const response = await axios.delete(`${this.authData?.baseurl}/blogs/posts/url-slug-exists?locationId=${locationId}&urlSlug=${urlSlug}${postId ? `&postId=${postId}` : ``}`, { headers });
         return response.data.exists as boolean;
     }
 }

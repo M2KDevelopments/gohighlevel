@@ -23,7 +23,7 @@ export class Form {
      */
     async getAll(locationId: string, skip: number = 0, limit = 20, type = "") {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/forms?locationId=${locationId}&limit=${limit}&skip=${skip}${type ? `&type=${type}` : ""}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/forms?locationId=${locationId}&limit=${limit}&skip=${skip}${type ? `&type=${type}` : ""}`, { headers });
         return response.data as {
             forms: IForm[],
             total: number,
@@ -37,7 +37,7 @@ export class Form {
     */
     async getSubmissions(locationId: string, skip: number = 0, limit = 20, page = 1, search = "", type = "", startAt = "", endAt = "") {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/forms?locationId=${locationId}&limit=${limit}&page=${page}&skip=${skip}${type ? `&type=${type}` : ""}${startAt ? `&startAt=${startAt}` : ""}${endAt ? `&endAt=${endAt}` : ""}${search ? `&q=${search}` : ""}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/forms?locationId=${locationId}&limit=${limit}&page=${page}&skip=${skip}${type ? `&type=${type}` : ""}${startAt ? `&startAt=${startAt}` : ""}${endAt ? `&endAt=${endAt}` : ""}${search ? `&q=${search}` : ""}`, { headers });
         return response.data as {
             submissions: ISubmission[],
             meta: {

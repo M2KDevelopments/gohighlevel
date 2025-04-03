@@ -22,7 +22,7 @@ export class Task {
      */
     async getAll(contactId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/contacts/${contactId}/tasks`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/contacts/${contactId}/tasks`, { headers });
         return response.data.tasks as ITask[];
     }
 
@@ -35,7 +35,7 @@ export class Task {
      */
     async get(contactId: string, taskId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/contacts/${contactId}/tasks/${taskId}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/contacts/${contactId}/tasks/${taskId}`, { headers });
         return response.data.task as ITask;
     }
 
@@ -48,7 +48,7 @@ export class Task {
      */
     async add(contactId: string, task: ITask) {
         const headers = this.authData?.headers;
-        const response = await axios.post(`${Gohighlevel.BASEURL}/contacts/${contactId}/tasks`, task, { headers });
+        const response = await axios.post(`${this.authData?.baseurl}/contacts/${contactId}/tasks`, task, { headers });
         return response.data.task as ITask;
     }
 
@@ -62,7 +62,7 @@ export class Task {
      */
     async update(contactId: string, taskId: string, task: ITask) {
         const headers = this.authData?.headers;
-        const response = await axios.put(`${Gohighlevel.BASEURL}/contacts/${contactId}/tasks/${taskId}`, task, { headers });
+        const response = await axios.put(`${this.authData?.baseurl}/contacts/${contactId}/tasks/${taskId}`, task, { headers });
         return response.data.task as ITask;
     }
 
@@ -75,7 +75,7 @@ export class Task {
      */
     async remove(contactId: string, taskId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.delete(`${Gohighlevel.BASEURL}/contacts/${contactId}/tasks/${taskId}`, { headers });
+        const response = await axios.delete(`${this.authData?.baseurl}/contacts/${contactId}/tasks/${taskId}`, { headers });
         return response.data.succeded as boolean;
     }
 
@@ -88,7 +88,7 @@ export class Task {
      */
     async completed(contactId: string, taskId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.put(`${Gohighlevel.BASEURL}/contacts/${contactId}/tasks/${taskId}/completed`, {}, { headers });
+        const response = await axios.put(`${this.authData?.baseurl}/contacts/${contactId}/tasks/${taskId}/completed`, {}, { headers });
         return response.data as ITask;
     }
 }

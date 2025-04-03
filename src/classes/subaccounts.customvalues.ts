@@ -22,7 +22,7 @@ export class CustomValue {
   */
     async getAll(locationId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/location/${locationId}/customValues`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/location/${locationId}/customValues`, { headers });
         return response.data.customValues as ICustomValue[];
     }
 
@@ -34,7 +34,7 @@ export class CustomValue {
     */
     async get(customValueId: string, locationId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/location/${locationId}/customValues/${customValueId}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/location/${locationId}/customValues/${customValueId}`, { headers });
         return response.data.customValue as ICustomValue;
     }
 
@@ -46,7 +46,7 @@ export class CustomValue {
      */
     async add(locationId: string, customValue: ICustomValue) {
         const headers = this.authData?.headers;
-        const response = await axios.post(`${Gohighlevel.BASEURL}/location/${locationId}/customValues`, customValue, { headers });
+        const response = await axios.post(`${this.authData?.baseurl}/location/${locationId}/customValues`, customValue, { headers });
         return response.data.customValue as ICustomValue;
     }
 
@@ -59,7 +59,7 @@ export class CustomValue {
      */
     async update(customValueId: string, locationId: string, customValue: ICustomValue) {
         const headers = this.authData?.headers;
-        const response = await axios.put(`${Gohighlevel.BASEURL}/location/${locationId}/customValues/${customValueId}`, customValue, { headers });
+        const response = await axios.put(`${this.authData?.baseurl}/location/${locationId}/customValues/${customValueId}`, customValue, { headers });
         return response.data.customValue as ICustomValue;
     }
 
@@ -71,7 +71,7 @@ export class CustomValue {
      */
     async remove(customValueId: string, locationId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.delete(`${Gohighlevel.BASEURL}/location/${locationId}/customValues/${customValueId}`, { headers });
+        const response = await axios.delete(`${this.authData?.baseurl}/location/${locationId}/customValues/${customValueId}`, { headers });
         return response.data.succeded as boolean;
     }
 }

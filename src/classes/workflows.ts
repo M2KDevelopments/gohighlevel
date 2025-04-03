@@ -22,7 +22,7 @@ export class Workflow {
      */
     async getAll(locationId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/workflows?locationId=${locationId}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/workflows?locationId=${locationId}`, { headers });
         return response.data.workflows as IWorkflow[];
     }
 }

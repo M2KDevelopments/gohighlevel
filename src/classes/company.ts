@@ -21,7 +21,7 @@ export class Company {
      */
     async get(companyId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/companies/${companyId}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/companies/${companyId}`, { headers });
         const company: Array<ICompany> = response.data.company;
         return company;
     }

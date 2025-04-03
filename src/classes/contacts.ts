@@ -51,7 +51,7 @@ export class Contacts {
         if (filters.startAfterId) q = `&startAfterId=${filters.startAfterId}`
         if (filters.limit) q = `&limit=${filters.limit}`
 
-        const response = await axios.get(`${Gohighlevel.BASEURL}/contacts?locationId=${locationId}${q}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/contacts?locationId=${locationId}${q}`, { headers });
         const contacts: Array<IContact> = response.data.contacts;
         const count: number = response.data.count;
         return { count, contacts };
@@ -70,13 +70,13 @@ export class Contacts {
     async search(query: string = '', order: 'asc' | 'desc' = 'desc', sortBy: 'date_added' | 'date_updated' = 'date_added', limit: number = 20) {
         const headers = this.authData?.headers;
         if (this.authData?.useAPIKey) {
-            const response = await axios.get(`${Gohighlevel.BASEURL}/contacts/?limit=${limit}&query=${query}&sortBy=${sortBy}&order=${order}`, { headers });
+            const response = await axios.get(`${this.authData?.baseurl}/contacts/?limit=${limit}&query=${query}&sortBy=${sortBy}&order=${order}`, { headers });
             const contacts: Array<IContact> = response.data.contacts;
             const total: number = response.data.meta.total;
             return { total, contacts };
         } else {
             const body = {};
-            const response = await axios.post(`${Gohighlevel.BASEURL}/contacts/search/`, body, { headers });
+            const response = await axios.post(`${this.authData?.baseurl}/contacts/search/`, body, { headers });
             const contacts: Array<IContact> = response.data.contacts;
             const total: number = response.data.total;
             return { total, contacts };
@@ -93,7 +93,7 @@ export class Contacts {
     async lookup(email: string = "", phone: string = "") {
         const headers = this.authData?.headers;
         if (this.authData?.useAPIKey) {
-            const response = await axios.get(`${Gohighlevel.BASEURL}/contacts/lookup?email=${email}&phone=${phone}`, { headers });
+            const response = await axios.get(`${this.authData?.baseurl}/contacts/lookup?email=${email}&phone=${phone}`, { headers });
             const contacts: Array<IContact> = response.data.contacts;
             return contacts;
         } else {
@@ -110,7 +110,7 @@ export class Contacts {
      */
     async getByBusinessId(businessId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/contacts/business/${businessId}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/contacts/business/${businessId}`, { headers });
         const contacts: Array<IContact> = response.data.contacts;
         const total: number = response.data.count;
         return { total, count: total, contacts };
@@ -125,7 +125,7 @@ export class Contacts {
      */
     async getOne(contactId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/contacts/${contactId}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/contacts/${contactId}`, { headers });
         const c: IContact = response.data.contact;
         return c;
     }
@@ -141,7 +141,7 @@ export class Contacts {
         const l = locationId ? locationId : this.authData?.locationId;
         const headers = this.authData?.headers;
         const body = this.authData?.useAPIKey ? contact : { ...contact, locationId: l };
-        const response = await axios.post(`${Gohighlevel.BASEURL}/contacts/`, body, { headers });
+        const response = await axios.post(`${this.authData?.baseurl}/contacts/`, body, { headers });
         const c: IContact = response.data.contact;
         return c;
     }
@@ -159,7 +159,7 @@ export class Contacts {
         const l = locationId ? locationId : this.authData?.locationId;
         const headers = this.authData?.headers;
         const body = this.authData?.useAPIKey ? contact : { ...contact, locationId: l };
-        const response = await axios.put(`${Gohighlevel.BASEURL}/contacts/${id}`, body, { headers });
+        const response = await axios.put(`${this.authData?.baseurl}/contacts/${id}`, body, { headers });
         const c: IContact = response.data.contact;
         return c;
     }
@@ -173,7 +173,7 @@ export class Contacts {
      */
     async remove(id: string) {
         const headers = this.authData?.headers;
-        const response = await axios.delete(`${Gohighlevel.BASEURL}/contacts/${id}`, { headers });
+        const response = await axios.delete(`${this.authData?.baseurl}/contacts/${id}`, { headers });
         return (response.data?.succeded || true) as boolean;
     }
 

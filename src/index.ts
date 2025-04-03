@@ -14,12 +14,12 @@ import { AuthData } from "./interfaces/auth/authdata";
 import { Credientials } from "./interfaces/auth/credientials";
 import axios from "axios";
 
-export class Gohighlevel {
+const BASE_API_URL = 'https://rest.gohighlevel.com/v1';
+const PROD = "https://services.leadconnectorhq.com";
+const MOCK = "https://stoplight.io/mocks/highlevel/integrations/39582850";
 
-    public static BASEURL = 'https://services.leadconnectorhq.com';
-    private static BASE_API_URL = 'https://rest.gohighlevel.com/v1';
-    private static PROD = "https://services.leadconnectorhq.com";
-    private static MOCK = "https://stoplight.io/mocks/highlevel/integrations/39582850";
+
+export class Gohighlevel {
 
     public credientials: Credientials;
     public oauth: OAuth;
@@ -43,9 +43,10 @@ export class Gohighlevel {
         this.oauth = new OAuth(credientials);
 
         if (credientials.apiKey) {
-            Gohighlevel.BASEURL = Gohighlevel.BASE_API_URL
+
             this.authData = {
                 useAPIKey: true,
+                baseurl: BASE_API_URL,
                 access_token: credientials.apiKey,
                 refresh_token: credientials.apiKey,
                 headers: {
@@ -86,9 +87,9 @@ export class Gohighlevel {
      * Use mock or live server
      * @param test 
      */
-    static setTestMode(test: boolean) {
-        if (test) this.BASEURL = this.MOCK;
-        else this.BASEURL = this.PROD;
+    setTestMode(test: boolean) {
+        if (test) this.authData.baseurl = MOCK;
+        else this.authData.baseurl = PROD;
     }
 
     /**
@@ -98,6 +99,7 @@ export class Gohighlevel {
      */
     setAuth(authData: AuthData) {
         this.authData = authData;
+        this.authData.baseurl = PROD;
         this.authData.headers = {
             "Version": authData?.headers?.Version || "2021-04-15",
             "Authorization": authData?.headers?.Authorization || "Bearer " + authData.access_token,

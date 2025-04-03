@@ -21,7 +21,7 @@ export class Tag {
      */
     async add(contactId: string, tags: string[]) {
         const headers = this.authData?.headers;
-        const response = await axios.post(`${Gohighlevel.BASEURL}/contacts/${contactId}/tags/`, { tags }, { headers });
+        const response = await axios.post(`${this.authData?.baseurl}/contacts/${contactId}/tags/`, { tags }, { headers });
         const events: string[] = response.data.tags;
         return events;
     }
@@ -37,7 +37,7 @@ export class Tag {
      */
     async remove(contactId: string, tags: string[]) {
         const headers = this.authData?.headers;
-        const response = await axios.delete(`${Gohighlevel.BASEURL}/contacts/${contactId}/tags/`, { headers });
+        const response = await axios.delete(`${this.authData?.baseurl}/contacts/${contactId}/tags/`, { headers });
         return response.data;
     }
 }

@@ -41,7 +41,7 @@ export class SubAccount {
      */
     async get(locationId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/location/${locationId}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/location/${locationId}`, { headers });
         return response.data.location as ISubAccount;
     }
 
@@ -52,7 +52,7 @@ export class SubAccount {
      */
     async getTimezones(locationId: string) {
         const headers = this.authData?.headers;
-        const response = await axios.get(`${Gohighlevel.BASEURL}/location/${locationId}/timezones`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/location/${locationId}/timezones`, { headers });
         return response.data;
     }
 
@@ -63,7 +63,7 @@ export class SubAccount {
      */
     async searchTask(locationId: string, search: SearchTask) {
         const headers = this.authData?.headers;
-        const response = await axios.post(`${Gohighlevel.BASEURL}/location/${locationId}/tasks/search`, search, { headers });
+        const response = await axios.post(`${this.authData?.baseurl}/location/${locationId}/tasks/search`, search, { headers });
         return response.data.tasks;
     }
 
@@ -81,7 +81,7 @@ export class SubAccount {
     async search(limit: number = 10, order: 'asc' | 'desc', skip: 0, companyId: string = "", email: string = "") {
         const headers = this.authData?.headers;
         const query = `?limit=${limit}&order=${order}&skip=${skip}${companyId ? `&companyId=${companyId}` : ""}${email ? `&email=${email}` : ""}`
-        const response = await axios.get(`${Gohighlevel.BASEURL}/location/search${query}`, { headers });
+        const response = await axios.get(`${this.authData?.baseurl}/location/search${query}`, { headers });
         return response.data.locations as ISubAccount[];
     }
 
@@ -92,7 +92,7 @@ export class SubAccount {
      */
     async post(subaccount: ISubAccount) {
         const headers = this.authData?.headers;
-        const response = await axios.post(`${Gohighlevel.BASEURL}/location`, subaccount, { headers });
+        const response = await axios.post(`${this.authData?.baseurl}/location`, subaccount, { headers });
         return response.data as ISubAccount;
     }
 
@@ -105,7 +105,7 @@ export class SubAccount {
      */
     async update(locationId: string, subaccount: ISubAccount) {
         const headers = this.authData?.headers;
-        const response = await axios.put(`${Gohighlevel.BASEURL}/location/${locationId}`, subaccount, { headers });
+        const response = await axios.put(`${this.authData?.baseurl}/location/${locationId}`, subaccount, { headers });
         return response.data as ISubAccount;
     }
 
@@ -118,7 +118,7 @@ export class SubAccount {
      */
     async remove(locationId: string, deleteTwilioAccount: boolean) {
         const headers = this.authData?.headers;
-        const response = await axios.delete(`${Gohighlevel.BASEURL}/location/${locationId}?deleteTwilioAccount=${deleteTwilioAccount}`, { headers });
+        const response = await axios.delete(`${this.authData?.baseurl}/location/${locationId}?deleteTwilioAccount=${deleteTwilioAccount}`, { headers });
         return response.data as { success: boolean, message: string };
     }
 }

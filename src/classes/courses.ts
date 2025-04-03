@@ -20,7 +20,7 @@ export class Course {
      */
     async import(course: ICourse) {
         const headers = this.authData?.headers;
-        const response = await axios.post(`${Gohighlevel.BASEURL}/courses/courses-exporter/public/import`, course, { headers });
+        const response = await axios.post(`${this.authData?.baseurl}/courses/courses-exporter/public/import`, course, { headers });
         return response.data;
     }
 
