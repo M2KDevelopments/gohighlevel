@@ -6,10 +6,12 @@ import { Contacts } from "./classes/contacts";
 import { Workflow } from "./classes/contacts.workflows";
 import { Course } from "./classes/courses";
 import { Form } from "./classes/forms";
+import { Location } from "./classes/location";
 import { OAuth } from "./classes/oauth";
 import { SubAccount } from "./classes/subaccounts";
 import { Survey } from "./classes/surveys";
 import { TriggerLink } from "./classes/triggerlinks";
+import { User } from "./classes/users";
 import { AuthData } from "./interfaces/auth/authdata";
 import { Credientials } from "./interfaces/auth/credientials";
 import axios from "axios";
@@ -34,6 +36,7 @@ export class Gohighlevel {
     public blogs: Blog;
     public forms: Form;
     public subaccounts: SubAccount;
+    public agency : { locations: Location, users:User};
 
     private authData: AuthData;
 
@@ -66,6 +69,10 @@ export class Gohighlevel {
             this.blogs = new Blog(this.authData);
             this.forms = new Form(this.authData);
             this.subaccounts = new SubAccount(this.authData);
+            this.agency = {
+                locations:new Location(this.authData),
+                users:new User(this.authData)
+            }
         } else {
             this.contacts = new Contacts();
             this.campaigns = new Campaign();
@@ -78,6 +85,10 @@ export class Gohighlevel {
             this.blogs = new Blog();
             this.forms = new Form();
             this.subaccounts = new SubAccount();
+            this.agency = {
+                locations:new Location( ),
+                users:new User( )
+            }
             this.authData = { access_token: "", locationId: "" };
         }
     }
@@ -115,6 +126,10 @@ export class Gohighlevel {
         this.surveys = new Survey(authData);
         this.blogs = new Blog(authData);
         this.forms = new Form(authData);
+        this.agency = {
+            locations:new Location(authData),
+            users:new User(authData)
+        }
     }
 
     /**
@@ -136,7 +151,7 @@ export class Gohighlevel {
                 refresh_token: this.authData.refresh_token ?? ""
             })
             const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-            const response = await axios.post(`https://api.msgsndr.com/oauth/token`, body, { headers });
+            const response = await axios.post(`https://services.leadconnectorhq.com/oauth/token/`, body, { headers });
             const { access_token, expires_in, scope, locationId, userType } = response.data;
 
             // Todo save this new auth info

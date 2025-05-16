@@ -19,9 +19,10 @@ export class Form {
     /**
      * Get Forms
      * https://highlevel.stoplight.io/docs/integrations/49e29c1716c61-get-forms
+     * https://public-api.gohighlevel.com/#29a44f93-8ec3-464d-a2d2-a3bce3d70ffc
      * @param locationId
      */
-    async getAll(locationId: string, skip: number = 0, limit = 20, type = "") {
+    async getAll(locationId: string="", skip: number = 0, limit = 20, type = "") {
         const headers = this.authData?.headers;
         const response = await axios.get(`${this.authData?.baseurl}/forms?locationId=${locationId}&limit=${limit}&skip=${skip}${type ? `&type=${type}` : ""}`, { headers });
         return response.data as {
@@ -29,6 +30,8 @@ export class Form {
             total: number,
         };
     }
+
+    
 
     /**
     * Get Form Submissions

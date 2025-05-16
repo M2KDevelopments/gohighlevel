@@ -10,6 +10,10 @@
     "build": "tsc",
     "test": "jest --watchAll"
   },
+    "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/M2KDevelopments/gohighlevel.git"
