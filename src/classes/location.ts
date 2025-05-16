@@ -6,8 +6,7 @@ export class Location {
     private authData?: AuthData;
 
     /**
-     * Endpoints For Contacts Notes
-     * https://highlevel.stoplight.io/docs/integrations/db572d519b209-get-all-notes
+     * Endpoints For Locations
      */
     constructor(authData?: AuthData) {
         this.authData = authData;
