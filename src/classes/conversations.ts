@@ -1,85 +1,15 @@
 import axios from "axios";
 import { AuthData } from "../interfaces/auth/authdata";
-
-interface IConversation {
-    id: string,
-    locationId: string,
-    dateAdded: number,
-    dateUpdated: number,
-    lastMessageDate: number,
-    unreadCount: number,
-    followers: [],
-    contactId: string,
-    fullName: string,
-    contactName: string,
-    email: string,
-    tags: string[],
-    type: string,
-    scoring: [],
-    lastMessageType: string,
-    sort: number[]
-}
-interface ISearchConversationParams {
-    locationId: string,
-    contactId?: string,
-}
-interface ISearchConversation {
-    conversation: Array<IConversation>,
-    total: number,
-    traceId: string
-}
-interface IConversateMessages {
-    messages: {
-        lastMessageId?: string,
-        nextPage: boolean,
-        messages: Array<any>
-    },
-
-    traceId: string
-}
-
-/**
- * https://highlevel.stoplight.io/docs/integrations/3c9036411fcc3-add-an-inbound-message
- */
-interface InboundMessage {
-    type: "SMS" | "Email" | "WhatsApp" | "GMB" | "IG" | "FB" | "Custom" | "WebChat" | "Live_Chat" | "Call",
-
-    /** Array of urls */
-    attachments?: string[],
-    message: string,
-    conversationId: string,
-
-    /** Conversation Providers are created in the GHL Market Place you can find the IDS there */
-    conversationProviderId: string,
-    direction: "inbound" | "outbound",
-
-    /** Date format e.g 2024-11-20T14:15:22Z*/
-    date: string,
-
-    html?: string,
-    subject?: string,
-    emailFrom?: string,
-    emailTo?: string,
-    emailCc?: string[],
-    emailBcc?: string[],
-    emailMessageId?: string,
-    call: {
-        to: string,
-        from: string,
-        status: "ending" | "completed" | "answered" | "busy" | "no-answer" | "failed" | "canceled" | "voicemail"
-
-    }
-}
-interface InboundSuccess {
-    success: boolean,
-    conversationId: string,
-    messageId: string,
-    traceId: string
-}
+import { IConversation, IConversateMessages, InboundMessage, InboundSuccess, ISearchConversation, ISearchConversationParams } from "../interfaces/conversation";
+import { ConversationsEmail } from "./conversations.email";
+import { ConversationsMessage } from "./conversations.messages";
+import { ConversationsProviders } from "./conversations.providers";
 
 export class Conversations {
     private authData?: AuthData;
-
+    public email: ConversationsEmail;
+    public messages: ConversationsMessage;
+    public providers: ConversationsProviders;
 
     /**
      * Endpoints For Conversations
@@ -87,64 +17,68 @@ export class Conversations {
      */
     constructor(authData?: AuthData) {
         this.authData = authData;
+        this.email = new ConversationsEmail(authData);
+        this.messages = new ConversationsMessage(authData);
+        this.providers = new ConversationsProviders(authData);
     }
 
-    getAll() {
-
+    /**
+     * Get Conversation
+     * Documentation - https://highlevel.stoplight.io/docs/integrations/d22efcfdb0c80-get-conversation
+     * @param conversationId 
+     * @returns 
+     */
+    async get(conversationId: string) {
+        const headers = this.authData?.headers;
+        const response = await axios.get(`${this.authData?.baseurl}/conversations/${conversationId}`, { headers });
+        return response.data as IConversation;
     }
-
-    get(conversationId: string) {
-
-    }
-
 
     async search(params: ISearchConversationParams) {
-        const access_token = this.authData?.access_token;
-        const headers = {
-            "Version": "2021-04-15",
-            "Authorization": "Bearer " + access_token,
-            "Accept": 'application/json'
-        }
-        const response = await axios.get(`https://services.leadconnectorhq.com/conversations/search?locationId=${params.locationId}&contactId=${params.contactId}`, { headers });
+        const headers = this.authData?.headers;
+        const response = await axios.get(`${this.authData?.baseurl}/conversations/search?locationId=${params.locationId}&contactId=${params.contactId}`, { headers });
         const c: ISearchConversation = response.data;
         return c;
     }
 
-    async getMessages(conversationId: string) {
-        const access_token = this.authData?.access_token;
-        const headers = {
-            "Version": "2021-04-15",
-            "Authorization": "Bearer " + access_token,
-            "Accept": 'application/json'
-        }
-        const response = await axios.get(`https://services.leadconnectorhq.com/conversations/${conversationId}/messages`, { headers });
-        const c: IConversateMessages = response.data;
-        return c;
+    /**
+     * Create Conversation
+     * Documentation - https://highlevel.stoplight.io/docs/integrations/8d0b19e09176e-create-conversation
+     * @param locationId 
+     * @param contactId 
+     * @returns 
+     */
+    async create(locationId: string, contactId: string) {
+        const headers = this.authData?.headers;
+        const response = await axios.post(`${this.authData?.baseurl}/conversations`, {
+            locationId,
+            contactId
+        }, { headers });
+        return response.data as IConversation;
     }
 
-
-    async addInboundMessage(props: InboundMessage) {
-        const access_token = this.authData?.access_token;
-        const headers = {
-            "Version": "2021-04-15",
-            "Authorization": "Bearer " + access_token,
-            "Accept": 'application/json'
-        }
-        const response = await axios.post(`https://services.leadconnectorhq.com/conversations/messages/inbound`, props, { headers });
-        const c: InboundSuccess = response.data;
-        return c;
+    /**
+     * Update Conversation
+     * Documentation - https://highlevel.stoplight.io/docs/integrations/f6c7d276afe8e-update-conversation
+     * @param conversationId 
+     * @param data 
+     * @returns 
+     */
+    async update(conversationId: string, data: Partial<IConversation>) {
+        const headers = this.authData?.headers;
+        const response = await axios.put(`${this.authData?.baseurl}/conversations/${conversationId}`, data, { headers });
+        return response.data as IConversation;
     }
 
-
-    async create() {
-
-    }
-
-    update() {
-
-    }
-
-    remove() {
-
+    /**
+     * Delete Conversation
+     * Documentation - https://highlevel.stoplight.io/docs/integrations/d6b698c33ff49-delete-conversation
+     * @param conversationId 
+     * @returns 
+     */
+    async remove(conversationId: string) {
+        const headers = this.authData?.headers;
+        const response = await axios.delete(`${this.authData?.baseurl}/conversations/${conversationId}`, { headers });
+        return response.data;
     }
 }

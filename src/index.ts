@@ -1,13 +1,23 @@
 import { Blog } from "./classes/blogs";
 import { Business } from "./classes/business";
+import { Calendar } from "./classes/calendars";
 import { Campaign } from "./classes/campaigns";
 import { Company } from "./classes/company";
 import { Contacts } from "./classes/contacts";
 import { Workflow } from "./classes/contacts.workflows";
+import { Conversations } from "./classes/conversations";
 import { Course } from "./classes/courses";
+import { CustomFields } from "./classes/customfields";
+import { CustomMenus } from "./classes/custommenus";
+import { Email } from "./classes/email";
 import { Form } from "./classes/forms";
 import { Location } from "./classes/location";
+import { MediaLibrary } from "./classes/medialibrary";
 import { OAuth } from "./classes/oauth";
+import { Opportunities } from "./classes/opportunities";
+import { Products } from "./classes/products";
+import { SaaS } from "./classes/saas";
+import { Snapshots } from "./classes/snapshots";
 import { SubAccount } from "./classes/subaccounts";
 import { Survey } from "./classes/surveys";
 import { TriggerLink } from "./classes/triggerlinks";
@@ -25,7 +35,10 @@ export class Gohighlevel {
 
     public credientials: Credientials;
     public oauth: OAuth;
+    public calendar : Calendar;
     public contacts: Contacts;
+    public conversations: Conversations;
+    public medialibrary: MediaLibrary;
     public campaigns: Campaign;
     public company: Company;
     public links: TriggerLink;
@@ -37,6 +50,13 @@ export class Gohighlevel {
     public forms: Form;
     public subaccounts: SubAccount;
     public agency : { locations: Location, users:User};
+    public customFields: CustomFields;
+    public customMenus: CustomMenus;
+    public opportunities: Opportunities;
+    public products: Products;
+    public saas: SaaS;
+    public snapshots: Snapshots;
+    public email: Email;
 
     private authData: AuthData;
 
@@ -59,23 +79,35 @@ export class Gohighlevel {
                 }
             }
             this.contacts = new Contacts(this.authData);
+            this.calendar = new Calendar(this.authData);
             this.campaigns = new Campaign(this.authData);
             this.company = new Company(this.authData);
             this.links = new TriggerLink(this.authData);
+            this.conversations = new Conversations(this.authData);
             this.courses = new Course(this.authData);
             this.businesses = new Business(this.authData);
             this.workflows = new Workflow(this.authData);
             this.surveys = new Survey(this.authData);
             this.blogs = new Blog(this.authData);
+            this.medialibrary = new MediaLibrary(this.authData);
             this.forms = new Form(this.authData);
             this.subaccounts = new SubAccount(this.authData);
             this.agency = {
                 locations:new Location(this.authData),
                 users:new User(this.authData)
             }
+            this.customFields = new CustomFields(this.authData);
+            this.customMenus = new CustomMenus(this.authData);
+            this.opportunities = new Opportunities(this.authData);
+            this.products = new Products(this.authData);
+            this.saas = new SaaS(this.authData);
+            this.snapshots = new Snapshots(this.authData);
+            this.email = new Email(this.authData);
         } else {
             this.contacts = new Contacts();
+            this.calendar = new Calendar();
             this.campaigns = new Campaign();
+            this.conversations = new Conversations();
             this.company = new Company();
             this.links = new TriggerLink();
             this.courses = new Course();
@@ -84,11 +116,19 @@ export class Gohighlevel {
             this.surveys = new Survey();
             this.blogs = new Blog();
             this.forms = new Form();
+            this.medialibrary = new MediaLibrary();
             this.subaccounts = new SubAccount();
             this.agency = {
-                locations:new Location( ),
-                users:new User( )
+                locations:new Location(),
+                users:new User()
             }
+            this.customFields = new CustomFields();
+            this.customMenus = new CustomMenus();
+            this.opportunities = new Opportunities();
+            this.products = new Products();
+            this.saas = new SaaS();
+            this.snapshots = new Snapshots();
+            this.email = new Email();
             this.authData = { access_token: "", locationId: "" };
         }
     }
@@ -117,7 +157,9 @@ export class Gohighlevel {
             "Accept": authData?.headers?.Accept || 'application/json'
         }
         this.contacts = new Contacts(authData);
+        this.calendar = new Calendar(authData);
         this.campaigns = new Campaign(authData);
+        this.conversations = new Conversations(authData);
         this.company = new Company(authData);
         this.links = new TriggerLink(authData);
         this.courses = new Course(authData);
@@ -126,10 +168,19 @@ export class Gohighlevel {
         this.surveys = new Survey(authData);
         this.blogs = new Blog(authData);
         this.forms = new Form(authData);
+        this.medialibrary = new MediaLibrary(authData);
+        this.subaccounts = new SubAccount(authData);
         this.agency = {
-            locations:new Location(authData),
-            users:new User(authData)
+            locations: new Location(authData),
+            users: new User(authData)
         }
+        this.customFields = new CustomFields(authData);
+        this.customMenus = new CustomMenus(authData);
+        this.opportunities = new Opportunities(authData);
+        this.products = new Products(authData);
+        this.saas = new SaaS(authData);
+        this.snapshots = new Snapshots(authData);
+        this.email = new Email(authData);
     }
 
     /**

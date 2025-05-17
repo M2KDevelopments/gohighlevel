@@ -26,6 +26,7 @@ export class CalendarResource {
         return response.data as ICalendarResource[];
     }
 
+    
 
     /**
      * Get Resources

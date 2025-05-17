@@ -23,6 +23,18 @@ export class User {
     }
 
     /**
+     * Get User by Location ID
+     * Documentation - https://highlevel.stoplight.io/docs/integrations/2b1f72be935aa-get-user-by-location
+     * @param locationId 
+     * @returns 
+     */
+    async getByLocation(locationId: string) {
+        const headers = this.authData?.headers;
+        const response = await axios.get(`${this.authData?.baseurl}/users/location/${locationId}`, { headers });
+        return response.data as IUser;
+    }
+
+    /**
      * Lookup user by email
      * Documentation - https://public-api.gohighlevel.com/#e74596d5-360c-46cb-b3dd-e065d62c29ee
      * @param email 

@@ -86,6 +86,21 @@ describe('Gohighlevel API Test', () => {
         }
 
     })
+ 
+    test('GET Calendar API Endpoints', async () => {
+        const ghl = new Gohighlevel({ apiKey: APIKEY })
+        const auth = await ghl.getAuth();
+        if (auth.useAPIKey) return;
+        const locationId = auth.locationId;
+        const calendars = await ghl.calendar.getAll(locationId)
+        const rooms = await ghl.calendar.resources.getAll("rooms")
+        const equipments = await ghl.calendar.resources.getAll("equipments")
+        const groups = await ghl.calendar.groups.getAll()
+        expect(Array.isArray(calendars)).toBe(true)
+        expect(Array.isArray(rooms)).toBe(true)
+        expect(Array.isArray(equipments)).toBe(true)
+        expect(Array.isArray(groups)).toBe(true)
+    })
 
 
     test('GET Subaccount API Endpoints', async () => {

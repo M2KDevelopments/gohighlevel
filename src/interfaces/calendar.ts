@@ -1,5 +1,5 @@
 //https://highlevel.stoplight.io/docs/integrations/e55dec1be7bee-get-calendars
-export interface ICalendarNotifcation {
+export interface ICalendarNotification {
     type: string | "email",
     shouldSendToContact: boolean,
     shouldSendToGuest: boolean,
@@ -51,13 +51,13 @@ export interface ICalendarAvailability {
 
 export interface ICalendarLookBusyConfig {
     enabled: boolean,
-    LookBusyPercentage: number
+    lookBusyPercentage: number
 }
 
 export interface ICalendar {
     id: string,
     isActive: boolean,
-    notifications: Array<ICalendarNotifcation>,
+    notifications: Array<ICalendarNotification>,
     locationId: string,
     groupId: string,
     teamMembers: Array<ICalendarTeamMember>,
