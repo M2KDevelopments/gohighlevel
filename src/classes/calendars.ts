@@ -1,9 +1,19 @@
 import axios from "axios";
 import { AuthData } from "../interfaces/auth/authdata";
 import { ICalendar } from "../interfaces/calendar";
+import { CalendarAppointmentNote } from "./calendars.appointmentsnotes";
+import { CalendarEvent } from "./calendars.events";
+import { CalendarGroup } from "./calendars.groups";
+import { CalendarNotification } from "./calendars.notifcations";
+import { CalendarResource } from "./calendars.resources";
 
 export class Calendar {
     private authData?: AuthData;
+    public appointmentnotes: CalendarAppointmentNote;
+    public events :CalendarEvent;
+    public groups :CalendarGroup;
+    public notifications: CalendarNotification;
+    public resources: CalendarResource;
 
     /**
      * Endpoints For Calendars
@@ -11,6 +21,11 @@ export class Calendar {
      */
     constructor(authData?: AuthData) {
         this.authData = authData;
+        this.appointmentnotes = new CalendarAppointmentNote(this.authData);
+        this.events = new CalendarEvent(this.authData);
+        this.groups = new CalendarGroup(this.authData);
+        this.notifications = new CalendarNotification(this.authData);
+        this.resources = new CalendarResource(this.authData)
     }
 
 
@@ -68,10 +83,13 @@ export class Calendar {
     /**
      * Create Block Slot
      * Documentation - https://highlevel.stoplight.io/docs/integrations/5a52896a68879-create-block-slot
-     * @param calendar 
+     * @param locationId
+     * @param startTime
+     * @param endTime
+     * @param extra 
      * @returns 
      */
-    async createBlcokSlot(locationId: String, startTime: string, endTime: string, extra?: { calendarId?: string, title?: string, assignedUserId?: string }) {
+    async createBlockSlot(locationId: String, startTime: string, endTime: string, extra?: { calendarId?: string, title?: string, assignedUserId?: string }) {
         const headers = this.authData?.headers;
         const extradata = extra ? extra : {};
         const data = { locationId, startTime, endTime, ...extradata }

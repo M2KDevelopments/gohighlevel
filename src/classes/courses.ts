@@ -1,6 +1,5 @@
 import axios from "axios";
 import { AuthData } from "../interfaces/auth/authdata";
-import { Gohighlevel } from "..";
 import { ICourse } from "../interfaces/course";
 
 
