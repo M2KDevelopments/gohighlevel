@@ -42,28 +42,30 @@ export class OAuth {
     async getCallbackAuthTokens(info: CallbackInfo) {
         if (!info.code && !info.refresh_token) throw new Error("Please enter a refresh token or code");
 
-        const body = info.code ?
-            new URLSearchParams({
-                grant_type: "authorization_code",
-                client_id: this.credientials?.clientId || "",
-                client_secret: this.credientials?.clientSecret || "",
-                code: info.code,
-            }) :
-            new URLSearchParams({
-                grant_type: "refresh_token",
-                client_id: this.credientials?.clientId || "",
-                client_secret: this.credientials?.clientSecret || "",
-                refresh_token: info.refresh_token!
-            })
-
-
-        // Headers
-        const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
-
-        // Make API Call to get Auth Tokens
-        const response = await axios.post(`https://api.msgsndr.com/oauth/token`, body, { headers });
-        const { access_token, expires_in, scope, locationId, companyId, userType, refresh_token } = response.data;
-
+        const body = new URLSearchParams();
+        if (info.code) {
+            body.set('client_id', this.credientials?.clientId || "");
+            body.set('client_secret', this.credientials?.clientSecret || "");
+            body.set('grant_type', 'authorization_code');
+            body.set('code', info.code);
+        } else {
+            body.set('client_id', this.credientials?.clientId || "");
+            body.set('client_secret', this.credientials?.clientSecret || "");
+            body.set('grant_type', 'refresh_token');
+            body.set('refresh_token', info.refresh_token ||"");
+        }
+        const headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            "Accept": 'application/json',
+        }
+        const options = {
+            method: 'POST',
+            url: 'https://services.leadconnectorhq.com/oauth/token',
+            headers: headers,
+            data: body,
+        };
+        const response = await axios.request(options);
+        const { access_token, expires_in, scope, locationId, userType, companyId, refresh_token } = response.data;
 
         // Structure Data
         const data: AuthData = {
