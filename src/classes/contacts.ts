@@ -1,13 +1,13 @@
 import axios from "axios";
 import { AuthData } from "../interfaces/auth/authdata";
 import { IContact } from "../interfaces/contact";
-import { Gohighlevel } from "..";
 import { Task } from "./contacts.tasks";
 import { Note } from "./contacts.notes";
 import { Campaign } from "./contacts.campaigns";
 import { Workflow } from "./contacts.workflows";
 import { Tag } from "./contacts.tags";
 import { Appointment } from "./contacts.appointments";
+import { IContactSearchFilter } from "../interfaces/contact.search.filter";
 
 
 export class Contacts {
@@ -82,6 +82,20 @@ export class Contacts {
             return { total, contacts };
 
         }
+    }
+
+    /**
+     * Get  Searched contacts use filters.
+     * Documentation - https://highlevel.stoplight.io/docs/integrations/dbe4f3a00a106-search-contacts
+     * Documnetation on Filters - https://doc.clickup.com/8631005/d/h/87cpx-158396/6e629989abe7fad
+     * @param query 
+    */
+    async searchWithFilters(query: IContactSearchFilter) {
+        const headers = this.authData?.headers;
+        const response = await axios.post(`${this.authData?.baseurl}/contacts/search/`, query, { headers });
+        const contacts: Array<IContact> = response.data.contacts;
+        const total: number = response.data.total;
+        return { total, contacts };
     }
 
     /**
@@ -178,7 +192,5 @@ export class Contacts {
     }
 
 }
-
-
 
 
