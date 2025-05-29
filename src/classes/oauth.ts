@@ -48,11 +48,14 @@ export class OAuth {
             body.set('client_secret', this.credientials?.clientSecret || "");
             body.set('grant_type', 'authorization_code');
             body.set('code', info.code);
+            body.set('user_type', this.credientials?.userType || "Location");
+
         } else {
             body.set('client_id', this.credientials?.clientId || "");
             body.set('client_secret', this.credientials?.clientSecret || "");
             body.set('grant_type', 'refresh_token');
-            body.set('refresh_token', info.refresh_token ||"");
+            body.set('refresh_token', info.refresh_token || "");
+            body.set('user_type', this.credientials?.userType || "Location");
         }
         const headers = {
             'Content-Type': 'application/x-www-form-urlencoded',

@@ -3,10 +3,11 @@ export interface Credientials {
     clientId?: string,
     clientSecret?: string,
     redirectUri?: string,
+    userType?: 'Location' | 'Company',
     scopes?: string[],
     isWhiteLabel?: boolean,
 
-    
+
     // or - https://public-api.gohighlevel.com/#intro
     apiKey?: string,
 }
