@@ -1,4 +1,4 @@
-# Go High Level Node JS
+# A Node JS Go High Level API Wrapper
 
 ![Static Badge](https://img.shields.io/badge/m2kdevelopments-purple?style=plastic&logo=github&logoColor=purple&label=developer&link=https%3A%2F%2Fgithub.com%2Fm2kdevelopments)
 ![Static Badge](https://img.shields.io/badge/MIT-green?style=plastic&logo=license&logoColor=green&label=license)
@@ -25,7 +25,7 @@ We recommend that you glance over the official <a href="https://public-api.gohig
 
 ## Initialization
 ```javascript
-import { Gohighlevel } from 'gohighlevel'; // const { Gohighlevel } = require('gohighlevel');
+import { Gohighlevel } from 'gohl'; // const { Gohighlevel } = require('gohl');
 
 // Create Instance of Gohighlevel
 
