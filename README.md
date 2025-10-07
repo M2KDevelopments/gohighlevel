@@ -245,3 +245,10 @@ You can support us with any amount. It's all appreciated.
 <a href="https://paypal.me/m2kdevelopment" target="_blank">
     <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal Logo" />
 </a>
+
+## Support (from Malawi or USA)
+<a href="https://give.paychangu.com/dc-RqLWVw" target="_blank">
+    <div style="padding:10px 10px; border-radius:30px; color:white;background:cyan; display:flex; gap:2px; width:300px; height:100px;">
+        Support via Paychangu
+    </div>
+</a>
